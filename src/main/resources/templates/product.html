@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <div th:insert="parts/header :: meta"></div>
+
+    <title>Товар</title>
+
+    <div th:insert="parts/header :: bootstrap_css"></div>
+    <div th:insert="parts/header :: main_css"></div>
+</head>
+
+<body>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Главная</a></li>
+        <li class="breadcrumb-item"><a href="/category">Категории</a></li>
+        <li class="breadcrumb-item"><a th:href="@{/category/{categoryId}/color(categoryId=${categoryId})}">Расцветки</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Товар</li>
+    </ol>
+</nav>
+
+<div class="container base">
+    <div class="row">
+        <table class="table table-hover">
+
+            <thead class="thead">
+            <tr>
+                <th scope="col">Цвет</th>
+                <th scope="col">Описание</th>
+                <th scope="col">Размер</th>
+                <th scope="col">Цена</th>
+                <th scope="col"></th>
+                <th scope="col">
+                    <a href="#product_modal" id="btnadd" data-toggle="modal" title="Добавить цвет"><i
+                            class="bi bi-plus-square-fill icon-add-color"></i></a></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="product : ${products}">
+                <td><a th:href="@{/category/{categoryId}/color/{colorId}/product/{productId}(categoryId=${categoryId}, colorId=${color.id}, productId=${product.id})}" th:utext="${product.name}"></a></td>
+                <td th:utext="${product.articul}"></td>
+                <td th:utext="${product.size}"></td>
+                <td th:utext="${product.price}"></td>
+                <td><a th:href="@{/category/{categoryId}/color/{colorId}/product/edit(categoryId=${categoryId}, colorId=${color.id}, productId=${product.id})}"><i class="bi bi-pencil-square"></i></a>
+                </td>
+                <td><a th:href="@{/category/{categoryId}/color/{colorId}/product/delete(categoryId=${categoryId}, colorId=${color.id}, productId=${product.id})}"><i class="bi bi-trash"></i></a></td>
+            </tr>
+            </tbody>
+
+        </table>
+
+
+        <div id="product_modal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h6 class="modal-title">Новый товар </h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form action="#" th:action="@{/category/{categoryId}/color/{colorId}/product/add(categoryId=${categoryId}, colorId=${color.id})}" th:object="${newProduct}" method="post" role="form">
+                            <fieldset>
+
+                                <div class="form-group">
+                                    <input type="text" name="id" th:field="*{id}"
+                                           class="form-control input-lg" hidden="hidden">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" name="name" id="name" th:field="*{name}"
+                                           class="form-control input-lg" placeholder="Модель">
+                                </div>
+
+                                <div class="form-group">
+                                    <input id="articul" type="text" th:field="*{articul}"
+                                           class="form-control input-lg" placeholder="Артикул">
+                                </div>
+
+                                <div class="form-group">
+                                    <input id="size" type="text" th:field="*{size}"
+                                           class="form-control input-lg" placeholder="Размер">
+                                </div>
+
+                                <div class="form-group">
+                                    <input id="price" type="text" th:field="*{price}"
+                                           class="form-control input-lg" placeholder="Цена">
+                                </div>
+
+                                <div class="form-group">
+                                    <input id="color" type="text" th:field="*{color}"
+                                           class="form-control input-lg" hidden="hidden">
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-6"></div>
+                                    <div class="col-xs-3 col-sm-3 col-md-3">
+                                        <input type="submit" id="save" class="btn btn-xs btn-success btn-block"
+                                               value="Сохранить">
+                                    </div>
+                                    <div class="col-xs-3 col-sm-3 col-md-3">
+                                        <a href="" class="btn btn-xs btn-default btn-block">Закрыть</a>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div th:insert="parts/footer :: bootstrap_script"></div>
+</body>
+</html>

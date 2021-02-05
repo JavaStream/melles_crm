@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Продукты</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>
+
+<h3><b>Продукты</b></h3>
+
+<table class="responsive-table">
+    <thead>
+    <tr>
+        <th>Модель</th>
+        <th>Артикул</th>
+        <th>Цена</th>
+        <th>Категория</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="product : ${products}">
+        <td th:utext="${product.name}"></td>
+        <td th:utext="${product.articul}"></td>
+        <td th:utext="${product.price}"></td>
+        <td th:utext="${product.categorie.name}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<h3>Создать товар</h3>
+
+<div class="row">
+    <form class="col s12" action="#" th:action="@{/}" th:object="${newproduct}" method="post">
+        <div class="row">
+            <div class="input-field col s3">
+                <input id="name" type="text" class="validate" th:field="*{name}">
+                <label for="name">Название</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s3">
+                <input id="articul" type="text" class="validate" th:field="*{articul}"></p>
+                <label for="articul">Артикул</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s3">
+                <input id="price" type="text" class="validate" th:field="*{price}">
+                <label for="price">Price</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s3">
+                <select th:field="*{category}" id="category" class="browser-default">
+                    <option value="" disabled selected>Выберите категорию</option>
+                    <option th:each="choice : ${categories}"
+                            th:value="${choice.id}"
+                            th:text="${choice.name}"></option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <div class="input-field inline">
+                    <input type="submit" value="Создать" class="btn btn-primary green">
+                    <input type="reset" value="Очистить" class="btn btn-primary red">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        M.updateTextFields();
+    });
+</script>
+</body>
+</html>

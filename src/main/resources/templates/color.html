@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <div th:insert="parts/header :: meta"></div>
+
+    <title>Категории</title>
+
+    <div th:insert="parts/header :: bootstrap_css"></div>
+    <div th:insert="parts/header :: main_css"></div>
+</head>
+
+<body>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Главная</a></li>
+        <li class="breadcrumb-item"><a href="/category">Категории</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Расцветки</li>
+    </ol>
+</nav>
+
+<div class="container base">
+    <div class="row">
+        <table class="table table-hover">
+
+            <thead class="thead">
+            <tr>
+                <th scope="col">Цвет</th>
+                <th scope="col">Описание</th>
+                <th scope="col"></th>
+                <th scope="col">
+                    <a href="#color_modal" id="btnadd" data-toggle="modal" title="Добавить цвет"><i
+                            class="bi bi-plus-square-fill icon-add-color"></i></a></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="color : ${colors}">
+                <td><a th:href="@{/category/{categoryId}/color/{colorId}/product(categoryId=${category.id}, colorId=${color.id})}" th:utext="${color.name}"></a></td>
+                <td th:utext="${color.description}"></td>
+                <td><a th:href="@{/category/{categoryId}/color/edit/{colorId}(colorId=${color.id}, categoryId=${category.id})}"><i class="bi bi-pencil-square"></i></a>
+                </td>
+                <td><a th:href="@{/category/{categoryId}/color/delete/{colorId}(colorId=${color.id}, categoryId=${category.id})}"><i class="bi bi-trash"></i></a></td>
+            </tr>
+            </tbody>
+
+        </table>
+
+
+        <div id="color_modal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h6 class="modal-title">Новая расцветка </h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form action="#" th:action="@{/category/{categoryId}/color/add(categoryId=${category.id})}" th:object="${newColor}" method="post" role="form">
+                            <fieldset>
+
+                                <div class="form-group">
+                                    <input type="text" name="id" th:field="*{id}"
+                                           class="form-control input-lg" hidden="hidden">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" name="name" id="name" th:field="*{name}"
+                                           class="form-control input-lg" placeholder="Цвет">
+                                </div>
+
+                                <div class="form-group">
+                                    <input id="description" type="text" th:field="*{description}"
+                                           class="form-control input-lg" placeholder="Описание">
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-6"></div>
+                                    <div class="col-xs-3 col-sm-3 col-md-3">
+                                        <input type="submit" id="save" class="btn btn-xs btn-success btn-block"
+                                               value="Сохранить">
+                                    </div>
+                                    <div class="col-xs-3 col-sm-3 col-md-3">
+                                        <a href="" class="btn btn-xs btn-default btn-block">Закрыть</a>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div th:insert="parts/footer :: bootstrap_script"></div>
+</body>
+</html>
