@@ -1,20 +1,16 @@
 package com.javastream.melles_crm.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.Collection;
 
 @Entity
 @Setter
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Table(name = "categories")
 public class Category {
 
@@ -28,6 +24,6 @@ public class Category {
     @Column(nullable = false)
     private String description;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Color> colors = new HashSet<>();
+    @OneToMany(mappedBy = "category", fetch=FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Collection<Color> colors;
 }

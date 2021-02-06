@@ -19,9 +19,6 @@ public class CategoryController {
     @Autowired
     private CategoryRepositorie categoryRepositorie;
 
-    @Autowired
-    private ColorRepositorie colorRepositorie;
-
     @GetMapping
     public String selectCategories(Model model) {
         model.addAttribute("categories", categoryRepositorie.findAll());

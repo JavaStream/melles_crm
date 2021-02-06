@@ -1,17 +1,15 @@
 package com.javastream.melles_crm.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Setter
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Table(name = "products")
 public class Product {
 
@@ -25,13 +23,13 @@ public class Product {
     @Column(nullable = false)
     private String size;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private String articul;
 
     @Column(nullable = false)
     private int price;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "color_id")
     private Color color;
 }
