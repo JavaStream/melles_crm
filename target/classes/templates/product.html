@@ -17,7 +17,7 @@
         <li class="breadcrumb-item"><a href="/">Главная</a></li>
         <li class="breadcrumb-item"><a href="/category">Категории</a></li>
         <li class="breadcrumb-item"><a th:href="@{/category/{categoryId}/color(categoryId=${category.id})}">Расцветки</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Товар</li>
+        <li class="breadcrumb-item active" aria-current="page">Товары </li>
     </ol>
 </nav>
 
@@ -31,6 +31,7 @@
                 <th scope="col">Описание</th>
                 <th scope="col">Размер</th>
                 <th scope="col">Цена</th>
+                <th scope="col">Остаток</th>
                 <th scope="col"></th>
                 <th scope="col">
                     <a href="#product_modal" id="btnadd" data-toggle="modal" title="Добавить цвет"><i
@@ -44,9 +45,10 @@
                 <td th:utext="${product.articul}"></td>
                 <td th:utext="${product.size}"></td>
                 <td th:utext="${product.price}"></td>
-                <td><a th:href="@{/category/{categoryId}/color/{colorId}/product/edit(categoryId=${category.id}, colorId=${color.id}, productId=${product.id})}"><i class="bi bi-pencil-square"></i></a>
+                <td th:utext="${product.incomingBalance}"></td>
+                <td><a th:href="@{/category/{categoryId}/color/{colorId}/product/edit/{productId}(categoryId=${category.id}, colorId=${color.id}, productId=${product.id})}"><i class="bi bi-pencil-square"></i></a>
                 </td>
-                <td><a th:href="@{/category/{categoryId}/color/{colorId}/product/delete(categoryId=${category.id}, colorId=${color.id}, productId=${product.id})}"><i class="bi bi-trash"></i></a></td>
+                <td><a th:href="@{/category/{categoryId}/color/{colorId}/product/delete/{productId}(categoryId=${category.id}, colorId=${color.id}, productId=${product.id})}"><i class="bi bi-trash"></i></a></td>
             </tr>
             </tbody>
 
@@ -92,12 +94,11 @@
                                            class="form-control input-lg" placeholder="Цена">
                                 </div>
 
-                                <!--
                                 <div class="form-group">
-                                    <input id="colorid" name="color" type="hidden" th:field="*{color.id}"
-                                           class="form-control input-lg" >
+                                    <input id="incomingBalance" type="text" th:field="*{incomingBalance}"
+                                           class="form-control input-lg" placeholder="Начальный остаток">
                                 </div>
-                                -->
+
 
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-6 col-md-6"></div>

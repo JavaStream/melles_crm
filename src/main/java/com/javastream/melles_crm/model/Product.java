@@ -3,13 +3,13 @@ package com.javastream.melles_crm.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Table(name = "products")
 public class Product {
 
@@ -27,9 +27,11 @@ public class Product {
     private String articul;
 
     @Column(nullable = false)
-    private int price;
+    private BigDecimal price;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    private Long incomingBalance;
+
+    @ManyToOne
     @JoinColumn(name = "color_id")
     private Color color;
 }

@@ -3,14 +3,15 @@ package com.javastream.melles_crm.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Table(name = "colors")
 public class Color {
 
@@ -28,6 +29,6 @@ public class Color {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @OneToMany(mappedBy = "color", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private Collection<Product> products;
+    @OneToMany(mappedBy = "color", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Product> products;
 }

@@ -40,11 +40,11 @@ public class ColorController {
     public String addColor(@PathVariable("category") String categoryId, Color color) {
         colorRepositorie.save(color);
 
-        return "redirect:/category/"+categoryId+"/color";
+        return "redirect:/category/" + categoryId + "/color";
     }
 
     @GetMapping("/color/edit/{id}")
-    public String editColor(@PathVariable("category") String categoryId, @PathVariable("id") String colorId, Model model) {
+    public String editColorForm(@PathVariable("category") String categoryId, @PathVariable("id") String colorId, Model model) {
         Category category = categoryRepositorie.findById(Long.parseLong(categoryId))
                 .orElseThrow(IllegalStateException::new);
 
@@ -61,16 +61,15 @@ public class ColorController {
     public String updateColor(@PathVariable("category") String categoryId, Color color) {
         colorRepositorie.save(color);
 
-        return "redirect:/category/"+categoryId+"/color";
+        return "redirect:/category/" + categoryId + "/color";
     }
 
     @GetMapping("/color/delete/{id}")
     public String deleteColor(@PathVariable("category") String categoryId,
-                                    @PathVariable("id") Long colorId,
-                                    Model model) {
+                              @PathVariable("id") Long colorId) {
 
         colorRepositorie.deleteById(colorId);
 
-        return "redirect:/category/"+categoryId+"/color";
+        return "redirect:/category/" + categoryId + "/color";
     }
 }

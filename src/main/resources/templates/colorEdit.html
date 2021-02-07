@@ -13,7 +13,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Главная</a></li>
         <li class="breadcrumb-item"><a href="/category">Категории</a></li>
-        <li class="breadcrumb-item"><a href="/category">Расцветки (edit)</a></li>
+        <li class="breadcrumb-item"><a th:href="@{/category/{categoryId}/color(categoryId=${category.id})}">Расцветки </a></li>
         <li class="breadcrumb-item active" aria-current="page">Редактирование</li>
     </ol>
 </nav>

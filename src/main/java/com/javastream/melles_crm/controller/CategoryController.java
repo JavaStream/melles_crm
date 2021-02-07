@@ -34,7 +34,7 @@ public class CategoryController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editCategory(@PathVariable("id") Long id, Model model) {
+    public String editCategoryForm(@PathVariable("id") Long id, Model model) {
         Category category = categoryRepositorie.findById(id).orElseThrow(IllegalStateException::new);
 
         model.addAttribute("category", category);
