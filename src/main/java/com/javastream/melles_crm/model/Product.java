@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Setter
@@ -23,15 +24,19 @@ public class Product {
     @Column(nullable = false)
     private String size;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String articul;
 
     @Column(nullable = false)
     private BigDecimal price;
 
+    @Column(nullable = false)
     private Long incomingBalance;
 
     @ManyToOne
     @JoinColumn(name = "color_id")
     private Color color;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
+    private List<ProductArrival> productArrival;
 }

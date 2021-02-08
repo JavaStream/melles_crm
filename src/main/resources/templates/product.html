@@ -41,7 +41,7 @@
 
             <tbody>
             <tr th:each="product : ${products}">
-                <td><a th:href="@{/category/{categoryId}/color/{colorId}/product/{productId}(categoryId=${category.id}, colorId=${color.id}, productId=${product.id})}" th:utext="${product.name}"></a></td>
+                <td><a th:href="@{/category/{categoryId}/color/{colorId}/product/{productId}/arrivals(categoryId=${category.id}, colorId=${color.id}, productId=${product.id})}" th:utext="${product.name}"></a></td>
                 <td th:utext="${product.articul}"></td>
                 <td th:utext="${product.size}"></td>
                 <td th:utext="${product.price}"></td>
@@ -70,33 +70,39 @@
                             <fieldset>
 
                                 <div class="form-group">
-                                    <input type="text" name="id" th:field="*{id}"
+                                    <input name="id" type="text" th:field="*{id}"
                                            class="form-control input-lg" hidden="hidden">
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" name="name" id="name" th:field="*{name}"
+                                    <input name="name" type="text" id="name" th:field="*{name}"
                                            class="form-control input-lg" placeholder="Модель">
                                 </div>
 
                                 <div class="form-group">
-                                    <input id="articul" type="text" th:field="*{articul}"
+                                    <input name="articul" type="text" th:field="*{articul}"
                                            class="form-control input-lg" placeholder="Артикул">
                                 </div>
 
                                 <div class="form-group">
-                                    <input id="size" type="text" th:field="*{size}"
+                                    <input name="size" type="text" th:field="*{size}"
                                            class="form-control input-lg" placeholder="Размер">
                                 </div>
 
                                 <div class="form-group">
-                                    <input id="price" type="text" th:field="*{price}"
+                                    <input name="price" type="text" th:field="*{price}"
                                            class="form-control input-lg" placeholder="Цена">
                                 </div>
 
                                 <div class="form-group">
-                                    <input id="incomingBalance" type="text" th:field="*{incomingBalance}"
+                                    <input name="incomingBalance" type="text" th:field="*{incomingBalance}"
                                            class="form-control input-lg" placeholder="Начальный остаток">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <input name="color" type="text" th:field="*{color}"
+                                           class="form-control input-lg" hidden="hidden">
                                 </div>
 
 

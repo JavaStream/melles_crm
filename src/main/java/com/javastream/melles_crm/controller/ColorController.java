@@ -12,10 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/*****************
- *      Colors
- ****************/
-
 @Controller
 @RequestMapping("/category/{category}")
 public class ColorController {
@@ -27,8 +23,9 @@ public class ColorController {
     private ColorRepositorie colorRepositorie;
 
     @GetMapping("/color")
-    public String selectColor(@PathVariable("category") String id, Model model) {
-        Category category = categoryRepositorie.findById(Long.parseLong(id)).get();
+    public String selectColor(@PathVariable("category") String categoryId, Model model) {
+        Category category = categoryRepositorie.findById(Long.parseLong(categoryId))
+                .orElseThrow(IllegalStateException::new);
 
         model.addAttribute("colors", colorRepositorie.findByCategory(category));
         model.addAttribute("category", category);
@@ -44,12 +41,11 @@ public class ColorController {
     }
 
     @GetMapping("/color/edit/{id}")
-    public String editColorForm(@PathVariable("category") String categoryId, @PathVariable("id") String colorId, Model model) {
-        Category category = categoryRepositorie.findById(Long.parseLong(categoryId))
-                .orElseThrow(IllegalStateException::new);
-
+    public String editColorForm(@PathVariable("id") String colorId, Model model) {
         Color color = colorRepositorie.findById(Long.parseLong(colorId))
                 .orElseThrow(IllegalStateException::new);
+
+        Category category = color.getCategory();
 
         model.addAttribute("color", color);
         model.addAttribute("category", category);

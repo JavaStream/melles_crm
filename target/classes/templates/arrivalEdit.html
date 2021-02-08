@@ -15,6 +15,7 @@
         <li class="breadcrumb-item"><a href="/category">Категории</a></li>
         <li class="breadcrumb-item"><a th:href="@{/category/{categoryId}/color(categoryId=${category.id})}">Расцветки </a></li>
         <li class="breadcrumb-item"><a th:href="@{/category/{categoryId}/color/{colorId}/product(categoryId=${category.id}, colorId=${color.id})}">Товары </a></li>
+        <li class="breadcrumb-item"><a th:href="@{/category/{categoryId}/color/{colorId}/product/{productId}/arrivals(categoryId=${category.id}, colorId=${color.id}, productId=${product.id})}">Приход товара </a></li>
         <li class="breadcrumb-item active" aria-current="page">Редактирование</li>
     </ol>
 </nav>
@@ -22,60 +23,46 @@
 <div class="container base">
     <div class="row">
 
-        <form class="col s12" action="#" th:action="@{/category/{categoryId}/color/{colorId}/product/edit/{productId}(categoryId=${category.id}, colorId=${color.id}, productId=${product.id})}" th:object="${product}" method="post">
+        <form class="col s12" action="#" th:action="@{/category/{categoryId}/color/{colorId}/product/{productId}/arrivals/edit/{arrivalId}(categoryId=${category.id}, colorId=${color.id}, productId=${product.id}, arrivalId=${arrival.id})}" th:object="${arrival}" method="post">
 
             <div class="row">
                 <div class="form-group">
                     <label for="ids">Номер</label>
-                    <input id="ids" type="text" class="form-control" th:field="*{id}" readonly="readonly">
+                    <input name="id" id="ids" type="text" class="form-control" th:field="*{id}" readonly="readonly">
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group">
-                    <label for="name">Название</label>
-                    <input name="id" id="name" type="text" class="form-control" th:field="*{name}">
+                    <label for="count">Количество</label>
+                    <input name="count" id="count" type="text" class="form-control" th:field="*{count}">
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group">
-                    <label for="size">Размер</label>
-                    <input name="size" id="size" type="text" class="form-control" th:field="*{size}">
+                    <label for="date">Дата</label>
+                    <input name="date" id="date" type="date" class="form-control" th:field="*{date}">
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group">
-                    <label for="articul">Артикул</label>
-                    <input name="articul" id="articul" type="text" class="form-control" th:field="*{articul}">
+                    <label for="number">Номер накладной</label>
+                    <input name="number" id="number" type="text" class="form-control" th:field="*{number}">
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group">
-                    <label for="price">Цена</label>
-                    <input name="price" id="price" type="text" class="form-control" th:field="*{price}">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group">
-                    <label for="incomingBalance">Начальный остаток</label>
-                    <input name="incomingBalance" id="incomingBalance" type="text" class="form-control" th:field="*{incomingBalance}">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group">
-                    <input name="color" type="text" class="form-control" th:field="*{color}" hidden="hidden">
+                    <input name="product" id="product" type="text" class="form-control" th:field="*{product}" hidden="hidden">
                 </div>
             </div>
 
             <div class="row">
                 <div>
                     <input type="submit" value="Сохранить" class="btn btn-success">
-                    <input type="submit" value="Назад" th:formaction="@{/category/{categoryId}/color/{colorId}/product(categoryId=${category.id}, colorId=${color.id})}" class="btn btn-link">
+                    <input type="submit" value="Назад" th:formaction="@{/category/{categoryId}/color/{colorId}/product/{productId}/arrivals(categoryId=${category.id}, colorId=${color.id}, productId=${product.id})}" class="btn btn-link">
                 </div>
             </div>
 

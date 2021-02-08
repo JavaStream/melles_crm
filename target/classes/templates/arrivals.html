@@ -16,8 +16,9 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Главная</a></li>
         <li class="breadcrumb-item"><a href="/category">Категории</a></li>
-        <li class="breadcrumb-item"><a th:href="@{/category/{categoryId}/color(categoryId=${category.id})}">Расцветки</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Товары </li>
+        <li class="breadcrumb-item"><a th:href="@{/category/{categoryId}/color(categoryId=${category.id})}">Расцветки </a></li>
+        <li class="breadcrumb-item"><a th:href="@{/category/{categoryId}/color/{colorId}/product(categoryId=${category.id}, colorId=${color.id})}">Товары </a></li>
+        <li class="breadcrumb-item active" aria-current="page">Приход товара </li>
     </ol>
 </nav>
 
@@ -27,35 +28,33 @@
 
             <thead class="thead">
             <tr>
-                <th scope="col">Цвет</th>
-                <th scope="col">Описание</th>
-                <th scope="col">Размер</th>
-                <th scope="col">Цена</th>
-                <th scope="col">Остаток</th>
+                <th scope="col">Номер</th>
+                <th scope="col">Количество</th>
+                <th scope="col">ДАТА</th>
+                <th scope="col">Номер накладной</th>
                 <th scope="col"></th>
                 <th scope="col">
-                    <a href="#product_modal" id="btnadd" data-toggle="modal" title="Добавить цвет"><i
+                    <a href="#arrival_modal" id="btnadd" data-toggle="modal" title="Добавить цвет"><i
                             class="bi bi-plus-square-fill icon-add-color"></i></a></th>
             </tr>
             </thead>
 
             <tbody>
-            <tr th:each="product : ${products}">
-                <td><a th:href="@{/category/{categoryId}/color/{colorId}/product/{productId}/arrivals(categoryId=${category.id}, colorId=${color.id}, productId=${product.id})}" th:utext="${product.name}"></a></td>
-                <td th:utext="${product.articul}"></td>
-                <td th:utext="${product.size}"></td>
-                <td th:utext="${product.price}"></td>
-                <td th:utext="${product.incomingBalance}"></td>
-                <td><a th:href="@{/category/{categoryId}/color/{colorId}/product/edit/{productId}(categoryId=${category.id}, colorId=${color.id}, productId=${product.id})}"><i class="bi bi-pencil-square"></i></a>
+            <tr th:each="arrival : ${arrivals}">
+                <td>1</td>
+                <td th:utext="${arrival.count}"></td>
+                <td th:utext="${arrival.date}"></td>
+                <td th:utext="${arrival.number}"></td>
+                <td><a th:href="@{/category/{categoryId}/color/{colorId}/product/{productId}/arrivals/edit/{arrivalId}(categoryId=${category.id}, colorId=${color.id}, productId=${product.id}, arrivalId=${arrival.id})}"><i class="bi bi-pencil-square"></i></a>
                 </td>
-                <td><a th:href="@{/category/{categoryId}/color/{colorId}/product/delete/{productId}(categoryId=${category.id}, colorId=${color.id}, productId=${product.id})}"><i class="bi bi-trash"></i></a></td>
+                <td><a th:href="@{/category/{categoryId}/color/{colorId}/product/{productId}/arrivals/delete/{arrivalId}(categoryId=${category.id}, colorId=${color.id}, productId=${product.id}, arrivalId=${arrival.id})}"><i class="bi bi-trash"></i></a></td>
             </tr>
             </tbody>
 
         </table>
 
 
-        <div id="product_modal" class="modal fade">
+        <div id="arrival_modal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
 
@@ -66,7 +65,7 @@
 
                     <div class="modal-body">
 
-                        <form action="#" th:action="@{/category/{categoryId}/color/{colorId}/product/add(categoryId=${category.id}, colorId=${color.id})}" th:object="${newProduct}" method="post" role="form">
+                        <form action="#" th:action="@{/category/{categoryId}/color/{colorId}/product/{productId}/arrivals/add(categoryId=${category.id}, colorId=${color.id}, productId=${product.id})}" th:object="${newArrival}" method="post" role="form">
                             <fieldset>
 
                                 <div class="form-group">
@@ -75,36 +74,24 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <input name="name" type="text" id="name" th:field="*{name}"
-                                           class="form-control input-lg" placeholder="Модель">
+                                    <input name="count" type="text" id="count" th:field="*{count}"
+                                           class="form-control input-lg" placeholder="Количество">
                                 </div>
 
                                 <div class="form-group">
-                                    <input name="articul" type="text" th:field="*{articul}"
-                                           class="form-control input-lg" placeholder="Артикул">
+                                    <input name="date" id="date" type="date" pattern="yyyy-MM-dd" th:field="*{date}"
+                                           class="form-control input-lg" placeholder="Дата">
                                 </div>
 
                                 <div class="form-group">
-                                    <input name="size" type="text" th:field="*{size}"
-                                           class="form-control input-lg" placeholder="Размер">
+                                    <input name="number" id="number" type="text" th:field="*{number}"
+                                           class="form-control input-lg" placeholder="Номер накладной">
                                 </div>
 
                                 <div class="form-group">
-                                    <input name="price" type="text" th:field="*{price}"
-                                           class="form-control input-lg" placeholder="Цена">
-                                </div>
-
-                                <div class="form-group">
-                                    <input name="incomingBalance" type="text" th:field="*{incomingBalance}"
-                                           class="form-control input-lg" placeholder="Начальный остаток">
-                                </div>
-
-
-                                <div class="form-group">
-                                    <input name="color" type="text" th:field="*{color}"
+                                    <input name="product" type="text" th:field="*{product}"
                                            class="form-control input-lg" hidden="hidden">
                                 </div>
-
 
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-6 col-md-6"></div>

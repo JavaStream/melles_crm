@@ -29,6 +29,6 @@ public class Color {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @OneToMany(mappedBy = "color", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "color", cascade = CascadeType.ALL)
     private List<Product> products;
 }

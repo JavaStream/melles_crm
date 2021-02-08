@@ -2,15 +2,13 @@ package com.javastream.melles_crm.controller;
 
 import com.javastream.melles_crm.model.Category;
 import com.javastream.melles_crm.repo.CategoryRepositorie;
-import com.javastream.melles_crm.repo.ColorRepositorie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-/*****************
- *      Category
- ****************/
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/category")
@@ -50,7 +48,7 @@ public class CategoryController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteCategory(@PathVariable("id") Long id, Model model) {
+    public String deleteCategory(@PathVariable("id") Long id) {
         categoryRepositorie.deleteById(id);
 
         return "redirect:/category";
