@@ -3,6 +3,7 @@ package com.javastream.melles_crm.controller;
 import com.javastream.melles_crm.model.Category;
 import com.javastream.melles_crm.model.Color;
 import com.javastream.melles_crm.model.Product;
+import com.javastream.melles_crm.model.ProductArrival;
 import com.javastream.melles_crm.repo.ColorRepositorie;
 import com.javastream.melles_crm.repo.ProductRepositorie;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
+/*
+    Товары сортируются по id
+ */
 
 @Controller
 @RequestMapping("/category/{categoryId}/color/{colorId}")
@@ -32,7 +40,10 @@ public class ProductController {
         Product product = new Product();
         product.setColor(color);
 
-        model.addAttribute("products", productRepositorie.findByColor(color));
+        List<Product> products = productRepositorie.findByColor(color);
+        List<Product> sortedProducts =products.stream().sorted(Comparator.comparing(Product::getId)).collect(Collectors.toList());
+
+        model.addAttribute("products", sortedProducts);
         model.addAttribute("color", color);
         model.addAttribute("category", category);
         model.addAttribute("newProduct", product);

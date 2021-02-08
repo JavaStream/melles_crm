@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <div th:insert="parts/header :: meta"></div>
 
-    <title>Редактирование категории</title>
+<head th:replace="parts/header :: header('Склад')"></head>
 
-    <div th:insert="parts/header :: bootstrap_css"></div>
-    <div th:insert="parts/header :: main_css"></div>
-</head>
 <body>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -20,7 +15,7 @@
 <div class="container base">
     <div class="row">
 
-        <form class="col s12" action="#" th:action="@{/category/udate}" th:object="${category}" method="post">
+        <form class="col s12" th:action="@{/category/udate}" th:object="${category}" th:method="POST">
 
             <div class="row">
                 <div class="form-group">
@@ -46,7 +41,7 @@
             <div class="row">
                 <div>
                     <input type="submit" value="Сохранить" class="btn btn-success">
-                    <input type="submit" value="Назад" formaction="/category" class="btn btn-link">
+                    <a th:href="@{/category}" th:utext="Назад" class="btn btn-link"></a>
                 </div>
             </div>
 
@@ -56,6 +51,6 @@
 </div>
 </div>
 
-<div th:insert="parts/footer :: bootstrap_script"></div>
+<div th:replace="parts/footer :: bootstrap_script"></div>
 </body>
 </html>

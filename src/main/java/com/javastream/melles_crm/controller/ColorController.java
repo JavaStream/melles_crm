@@ -2,6 +2,7 @@ package com.javastream.melles_crm.controller;
 
 import com.javastream.melles_crm.model.Category;
 import com.javastream.melles_crm.model.Color;
+import com.javastream.melles_crm.model.Product;
 import com.javastream.melles_crm.repo.CategoryRepositorie;
 import com.javastream.melles_crm.repo.ColorRepositorie;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
+/*
+    Расцветки (модели) сортируются по id
+ */
 
 @Controller
 @RequestMapping("/category/{category}")
@@ -27,7 +36,10 @@ public class ColorController {
         Category category = categoryRepositorie.findById(Long.parseLong(categoryId))
                 .orElseThrow(IllegalStateException::new);
 
-        model.addAttribute("colors", colorRepositorie.findByCategory(category));
+        List<Color> colors = colorRepositorie.findByCategory(category);
+        List<Color> sortedColors = colors.stream().sorted(Comparator.comparing(Color::getId)).collect(Collectors.toList());
+
+        model.addAttribute("colors", sortedColors);
         model.addAttribute("category", category);
         model.addAttribute("newColor", new Color());
         return "color";

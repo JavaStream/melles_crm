@@ -12,8 +12,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+/*
+    Приход сортируется сначала по дате, затем по номеру накладной.
+ */
 
 @Controller
 @RequestMapping("/category/{categoryId}/color/{colorId}/product/{productId}")
@@ -40,6 +46,7 @@ public class ProductArrivalController {
         Product product = productRepositorie.findById(productId).orElseThrow(IllegalStateException::new);
 
         List<ProductArrival> arrivals = arrivalRepositorie.findByProduct(product);
+        List<ProductArrival> sortedArrivals = arrivals.stream().sorted(Comparator.comparing(ProductArrival::getDate).reversed().thenComparing(Comparator.comparing(ProductArrival::getNumber))).collect(Collectors.toList());
 
         ProductArrival productArrival = new ProductArrival();
         productArrival.setProduct(product);
@@ -47,7 +54,7 @@ public class ProductArrivalController {
         model.addAttribute("product", product);
         model.addAttribute("color", color);
         model.addAttribute("category", category);
-        model.addAttribute("arrivals", arrivals);
+        model.addAttribute("arrivals", sortedArrivals);
         model.addAttribute("newArrival", productArrival);
         return "arrivals";
     }
@@ -102,7 +109,7 @@ public class ProductArrivalController {
                                 @PathVariable("categoryId") String categoryId,
                                 @PathVariable("colorId") String colorId,
                                 @PathVariable("productId") String productId) {
-        
+
         arrivalRepositorie.deleteById(Long.parseLong(arrivalId));
 
         return "redirect:/category/" + categoryId + "/color/" + colorId + "/product/" + productId + "/arrivals";

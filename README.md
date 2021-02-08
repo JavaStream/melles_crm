@@ -1,2 +1,13 @@
-# melles_crm
-The Best CRM Software for Clothing Industry
+# CRM Software for Clothing Industry (Java)
+
+---
+<p align="center">
+<sup>
+Это полноценная CRM система для предприятий, занятых в сфере швейного производства. Она позволяет вести учет складских остатков, клиентов, заказов и задач. 
+</sup>
+</p>
+
+---
+
+
+

@@ -1,9 +1,11 @@
 package com.javastream.melles_crm.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -18,12 +20,8 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    @NotBlank(message = "Обязательное поле")
     private String name;
 
-    @Column(nullable = false)
-    @NotBlank(message = "Обязательное поле")
     private String description;
 
     @OneToMany(mappedBy = "category", fetch=FetchType.EAGER, cascade = CascadeType.ALL)

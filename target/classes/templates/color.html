@@ -1,14 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-<head>
-    <div th:insert="parts/header :: meta"></div>
-
-    <title>Категории</title>
-
-    <div th:insert="parts/header :: bootstrap_css"></div>
-    <div th:insert="parts/header :: main_css"></div>
-</head>
+<head th:replace="parts/header :: header('Расцветки')"></head>
 
 <body>
 
@@ -26,7 +19,7 @@
 
             <thead class="thead">
             <tr>
-                <th scope="col">Цвет</th>
+                <th scope="col">Цвет </th>
                 <th scope="col">Описание</th>
                 <th scope="col"></th>
                 <th scope="col">
@@ -59,7 +52,7 @@
 
                     <div class="modal-body">
 
-                        <form action="#" th:action="@{/category/{categoryId}/color/add(categoryId=${category.id})}" th:object="${newColor}" method="post" role="form">
+                        <form th:action="@{/category/{categoryId}/color/add(categoryId=${category.id})}" th:object="${newColor}" th:method="POST" role="form">
                             <fieldset>
 
                                 <div class="form-group">
@@ -103,6 +96,6 @@
 
 </div>
 
-<div th:insert="parts/footer :: bootstrap_script"></div>
+<div th:replace="parts/footer :: bootstrap_script"></div>
 </body>
 </html>

@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <div th:insert="parts/header :: meta"></div>
 
-    <title>Редактирование категории</title>
+<head th:replace="parts/header :: header('Приход товара')"></head>
 
-    <div th:insert="parts/header :: bootstrap_css"></div>
-    <div th:insert="parts/header :: main_css"></div>
-</head>
 <body>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -23,7 +18,7 @@
 <div class="container base">
     <div class="row">
 
-        <form class="col s12" action="#" th:action="@{/category/{categoryId}/color/{colorId}/product/{productId}/arrivals/edit/{arrivalId}(categoryId=${category.id}, colorId=${color.id}, productId=${product.id}, arrivalId=${arrival.id})}" th:object="${arrival}" method="post">
+        <form class="col s12" th:action="@{/category/{categoryId}/color/{colorId}/product/{productId}/arrivals/edit/{arrivalId}(categoryId=${category.id}, colorId=${color.id}, productId=${product.id}, arrivalId=${arrival.id})}" th:object="${arrival}" th:method="POST">
 
             <div class="row">
                 <div class="form-group">
@@ -62,7 +57,7 @@
             <div class="row">
                 <div>
                     <input type="submit" value="Сохранить" class="btn btn-success">
-                    <input type="submit" value="Назад" th:formaction="@{/category/{categoryId}/color/{colorId}/product/{productId}/arrivals(categoryId=${category.id}, colorId=${color.id}, productId=${product.id})}" class="btn btn-link">
+                    <a th:href="@{/category/{categoryId}/color/{colorId}/product/{productId}/arrivals(categoryId=${category.id}, colorId=${color.id}, productId=${product.id})}" th:utext="Назад" class="btn btn-link"></a>
                 </div>
             </div>
 
@@ -72,6 +67,6 @@
 </div>
 </div>
 
-<div th:insert="parts/footer :: bootstrap_script"></div>
+<div th:replace="parts/footer :: bootstrap_script"></div>
 </body>
 </html>

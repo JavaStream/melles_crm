@@ -11,4 +11,9 @@ public class WrongIdRequestException {
     public String handleIllegalStateException(Model model) {
         return "notFound";
     }
+
+    @ExceptionHandler(Exception.class)
+    public String handleException(Model model) {
+        return "notFound";
+    }
 }

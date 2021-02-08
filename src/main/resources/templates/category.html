@@ -1,21 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-<head>
-    <div th:insert="parts/header :: meta"></div>
-
-    <title>Категории</title>
-
-    <div th:insert="parts/header :: bootstrap_css"></div>
-    <div th:insert="parts/header :: main_css"></div>
-</head>
+<head th:replace="parts/header :: header('Склад')"></head>
 
 <body>
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Главная</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Категории</li>
+        <li class="breadcrumb-item"><a href="/">Главная </a></li>
+        <li class="breadcrumb-item active" aria-current="page">Склад</li>
     </ol>
 </nav>
 
@@ -58,7 +51,7 @@
 
                     <div class="modal-body">
 
-                        <form action="#" th:action="@{/category}" th:object="${newCategory}" method="post" role="form">
+                        <form th:action="@{/category/add}" th:object="${newCategory}" th:method="POST" role="form">
                             <fieldset>
 
                                 <div class="form-group">
@@ -98,6 +91,6 @@
 
 </div>
 
-<div th:insert="parts/footer :: bootstrap_script"></div>
+<div th:replace="parts/footer :: bootstrap_script"></div>
 </body>
 </html>
