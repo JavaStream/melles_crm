@@ -3,46 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="f469bd47-693b-4938-bca8-499f4a468e7e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/config/WrongIdRequestException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/config/WrongIdRequestException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/controller/CategoryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/controller/ColorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/controller/ColorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/controller/ProductArrivalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/controller/ProductArrivalController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/model/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/repo/CategoryRepositorie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/repo/CategoryRepositorie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/arrivalEdit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/arrivalEdit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/arrivals.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/arrivals.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/category.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/category.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/categoryEdit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/categoryEdit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/color.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/color.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/colorEdit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/colorEdit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/notFound.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/notFound.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/parts/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/parts/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/product.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/product.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/productEdit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/productEdit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/config/WrongIdRequestException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/config/WrongIdRequestException.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/CategoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/CategoryController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/ColorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/ColorController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/ProductArrivalController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/ProductArrivalController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/ProductController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/Category.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/Category.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/repo/CategoryRepositorie.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/repo/CategoryRepositorie.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/arrivals.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/arrivals.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/category.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/category.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/categoryEdit.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/categoryEdit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/color.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/color.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/colorEdit.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/colorEdit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/notFound.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/notFound.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/parts/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/parts/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/product.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/product.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/productEdit.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/productEdit.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -144,7 +109,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../bitrix24-java-api" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="cuba" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -157,6 +122,7 @@
       <recent name="D:\1_Programming\2_projects\IdeaProjects\melles_crm\src\main\resources\templates\parts" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.javastream.melles_crm.service" />
       <recent name="com.javastream.melles_crm.controller" />
       <recent name="com.javastream.melles_crm.repo" />
       <recent name="com.javastream.melles_crm.model" />
@@ -201,7 +167,7 @@
       <option name="presentableId" value="Default" />
       <updated>1612155586271</updated>
       <workItem from="1612155591053" duration="86374000" />
-      <workItem from="1612538558509" duration="83903000" />
+      <workItem from="1612538558509" duration="89940000" />
     </task>
     <servers />
   </component>

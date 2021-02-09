@@ -2,10 +2,8 @@ package com.javastream.melles_crm.controller;
 
 import com.javastream.melles_crm.model.Category;
 import com.javastream.melles_crm.model.Color;
-import com.javastream.melles_crm.model.Product;
-import com.javastream.melles_crm.repo.CategoryRepositorie;
-import com.javastream.melles_crm.repo.ColorRepositorie;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.javastream.melles_crm.service.CategoryService;
+import com.javastream.melles_crm.service.ColorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /*
     Расцветки (модели) сортируются по id
@@ -25,21 +21,20 @@ import java.util.stream.Collectors;
 @RequestMapping("/category/{category}")
 public class ColorController {
 
-    @Autowired
-    private CategoryRepositorie categoryRepositorie;
+    private ColorService colorService;
+    private CategoryService categoryService;
 
-    @Autowired
-    private ColorRepositorie colorRepositorie;
+    public ColorController(ColorService colorService, CategoryService categoryService) {
+        this.colorService = colorService;
+        this.categoryService = categoryService;
+    }
 
     @GetMapping("/color")
     public String selectColor(@PathVariable("category") String categoryId, Model model) {
-        Category category = categoryRepositorie.findById(Long.parseLong(categoryId))
-                .orElseThrow(IllegalStateException::new);
+        Category category = categoryService.findById(categoryId);
+        List<Color> colors = colorService.findAllByCategory(category);
 
-        List<Color> colors = colorRepositorie.findByCategory(category);
-        List<Color> sortedColors = colors.stream().sorted(Comparator.comparing(Color::getId)).collect(Collectors.toList());
-
-        model.addAttribute("colors", sortedColors);
+        model.addAttribute("colors", colors);
         model.addAttribute("category", category);
         model.addAttribute("newColor", new Color());
         return "color";
@@ -47,16 +42,14 @@ public class ColorController {
 
     @PostMapping("/color/add")
     public String addColor(@PathVariable("category") String categoryId, Color color) {
-        colorRepositorie.save(color);
+        colorService.save(color);
 
         return "redirect:/category/" + categoryId + "/color";
     }
 
     @GetMapping("/color/edit/{id}")
     public String editColorForm(@PathVariable("id") String colorId, Model model) {
-        Color color = colorRepositorie.findById(Long.parseLong(colorId))
-                .orElseThrow(IllegalStateException::new);
-
+        Color color = colorService.findById(colorId);
         Category category = color.getCategory();
 
         model.addAttribute("color", color);
@@ -67,7 +60,7 @@ public class ColorController {
 
     @PostMapping("/color/edit/{id}")
     public String updateColor(@PathVariable("category") String categoryId, Color color) {
-        colorRepositorie.save(color);
+        colorService.save(color);
 
         return "redirect:/category/" + categoryId + "/color";
     }
@@ -76,7 +69,7 @@ public class ColorController {
     public String deleteColor(@PathVariable("category") String categoryId,
                               @PathVariable("id") Long colorId) {
 
-        colorRepositorie.deleteById(colorId);
+        colorService.deleteById(colorId);
 
         return "redirect:/category/" + categoryId + "/color";
     }

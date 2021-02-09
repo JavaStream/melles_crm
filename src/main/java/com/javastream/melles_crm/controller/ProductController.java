@@ -3,17 +3,13 @@ package com.javastream.melles_crm.controller;
 import com.javastream.melles_crm.model.Category;
 import com.javastream.melles_crm.model.Color;
 import com.javastream.melles_crm.model.Product;
-import com.javastream.melles_crm.model.ProductArrival;
-import com.javastream.melles_crm.repo.ColorRepositorie;
-import com.javastream.melles_crm.repo.ProductRepositorie;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.javastream.melles_crm.service.ColorService;
+import com.javastream.melles_crm.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /*
     Товары сортируются по id
@@ -23,27 +19,27 @@ import java.util.stream.Collectors;
 @RequestMapping("/category/{categoryId}/color/{colorId}")
 public class ProductController {
 
-    @Autowired
-    private ProductRepositorie productRepositorie;
+    private ColorService colorService;
+    private ProductService productService;
 
-    @Autowired
-    private ColorRepositorie colorRepositorie;
-
+    public ProductController(ColorService colorService, ProductService productService) {
+        this.colorService = colorService;
+        this.productService = productService;
+    }
 
     @GetMapping("/product")
-    public String listProducts(@PathVariable("colorId") Long colorId,
+    public String listProducts(@PathVariable("colorId") String colorId,
                                Model model) {
 
-        Color color = colorRepositorie.findById(colorId).get();
+        Color color = colorService.findById(colorId);
         Category category = color.getCategory();
 
         Product product = new Product();
         product.setColor(color);
 
-        List<Product> products = productRepositorie.findByColor(color);
-        List<Product> sortedProducts =products.stream().sorted(Comparator.comparing(Product::getId)).collect(Collectors.toList());
+        List<Product> products = productService.findAllByColor(color);
 
-        model.addAttribute("products", sortedProducts);
+        model.addAttribute("products", products);
         model.addAttribute("color", color);
         model.addAttribute("category", category);
         model.addAttribute("newProduct", product);
@@ -55,7 +51,7 @@ public class ProductController {
                              @PathVariable("categoryId") String categoryId,
                              @PathVariable("colorId") String colorId) {
 
-        productRepositorie.save(product);
+        productService.save(product);
 
         return "redirect:/category/" + categoryId + "/color/" + colorId + "/product";
     }
@@ -66,12 +62,9 @@ public class ProductController {
                                   Model model) {
 
 
-        Color color = colorRepositorie.findById(Long.parseLong(colorId)).orElseThrow(IllegalStateException::new);
-
+        Color color = colorService.findById(colorId);
+        Product product = productService.findById(productId);
         Category category = color.getCategory();
-
-        Product product = productRepositorie.findById(Long.parseLong(productId))
-                .orElseThrow(IllegalStateException::new);
 
         model.addAttribute("category", category);
         model.addAttribute("color", color);
@@ -85,7 +78,7 @@ public class ProductController {
                               @PathVariable("categoryId") String categoryId,
                               @PathVariable("colorId") String colorId) {
 
-        productRepositorie.save(product);
+        productService.save(product);
 
         return "redirect:/category/" + categoryId + "/color/" + colorId + "/product";
     }
@@ -96,7 +89,7 @@ public class ProductController {
                                 @PathVariable("id") String productId
     ) {
 
-        productRepositorie.deleteById(Long.parseLong(productId));
+        productService.deleteById(productId);
 
         return "redirect:/category/" + categoryId + "/color/" + colorId + "/product";
     }

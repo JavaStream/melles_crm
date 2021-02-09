@@ -4,18 +4,14 @@ import com.javastream.melles_crm.model.Category;
 import com.javastream.melles_crm.model.Color;
 import com.javastream.melles_crm.model.Product;
 import com.javastream.melles_crm.model.ProductArrival;
-import com.javastream.melles_crm.repo.ColorRepositorie;
-import com.javastream.melles_crm.repo.ProductArrivalRepositorie;
-import com.javastream.melles_crm.repo.ProductRepositorie;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.javastream.melles_crm.service.ColorService;
+import com.javastream.melles_crm.service.ProductArrivalService;
+import com.javastream.melles_crm.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /*
     Приход сортируется сначала по дате, затем по номеру накладной.
@@ -25,28 +21,27 @@ import java.util.stream.Stream;
 @RequestMapping("/category/{categoryId}/color/{colorId}/product/{productId}")
 public class ProductArrivalController {
 
-    private ProductRepositorie productRepositorie;
-    private ColorRepositorie colorRepositorie;
-    private ProductArrivalRepositorie arrivalRepositorie;
+    private ProductArrivalService arrivalService;
+    private ColorService colorService;
+    private ProductService productService;
 
-
-    public ProductArrivalController(ProductRepositorie productRepositorie, ColorRepositorie colorRepositorie, ProductArrivalRepositorie arrivalRepositorie) {
-        this.productRepositorie = productRepositorie;
-        this.colorRepositorie = colorRepositorie;
-        this.arrivalRepositorie = arrivalRepositorie;
+    public ProductArrivalController(ProductArrivalService arrivalService, ColorService colorService, ProductService productService) {
+        this.arrivalService = arrivalService;
+        this.colorService = colorService;
+        this.productService = productService;
     }
 
     @GetMapping("/arrivals")
-    public String listArrivals(@PathVariable("colorId") Long colorId,
-                               @PathVariable("productId") Long productId,
+    public String listArrivals(@PathVariable("colorId") String colorId,
+                               @PathVariable("productId") String productId,
                                Model model) {
 
-        Color color = colorRepositorie.findById(colorId).orElseThrow(IllegalStateException::new);
+        Color color = colorService.findById(colorId);
         Category category = color.getCategory();
-        Product product = productRepositorie.findById(productId).orElseThrow(IllegalStateException::new);
 
-        List<ProductArrival> arrivals = arrivalRepositorie.findByProduct(product);
-        List<ProductArrival> sortedArrivals = arrivals.stream().sorted(Comparator.comparing(ProductArrival::getDate).reversed().thenComparing(Comparator.comparing(ProductArrival::getNumber))).collect(Collectors.toList());
+        Product product = productService.findById(productId);
+
+        List<ProductArrival> arrivals = arrivalService.findAllByProduct(product);
 
         ProductArrival productArrival = new ProductArrival();
         productArrival.setProduct(product);
@@ -54,7 +49,7 @@ public class ProductArrivalController {
         model.addAttribute("product", product);
         model.addAttribute("color", color);
         model.addAttribute("category", category);
-        model.addAttribute("arrivals", sortedArrivals);
+        model.addAttribute("arrivals", arrivals);
         model.addAttribute("newArrival", productArrival);
         return "arrivals";
     }
@@ -65,7 +60,7 @@ public class ProductArrivalController {
                              @PathVariable("colorId") String colorId,
                              @PathVariable("productId") String productId) {
 
-        arrivalRepositorie.save(productArrival);
+        arrivalService.save(productArrival);
 
         return "redirect:/category/" + categoryId + "/color/" + colorId + "/product/" + productId + "/arrivals";
     }
@@ -77,13 +72,12 @@ public class ProductArrivalController {
                                   Model model) {
 
 
-        Color color = colorRepositorie.findById(Long.parseLong(colorId)).orElseThrow(IllegalStateException::new);
-        ProductArrival arrival = arrivalRepositorie.findById(Long.parseLong(arrivalId)).orElseThrow(IllegalStateException::new);
+        Color color = colorService.findById(colorId);
+        ProductArrival arrival = arrivalService.findById(arrivalId);
 
         Category category = color.getCategory();
 
-        Product product = productRepositorie.findById(Long.parseLong(productId))
-                .orElseThrow(IllegalStateException::new);
+        Product product = productService.findById(productId);
 
         model.addAttribute("category", category);
         model.addAttribute("color", color);
@@ -95,11 +89,11 @@ public class ProductArrivalController {
 
     @PostMapping("/arrivals/edit/{arrivalId}")
     public String updateArrival(@ModelAttribute("product") ProductArrival arrival,
-                              @PathVariable("categoryId") String categoryId,
-                              @PathVariable("colorId") String colorId,
-                              @PathVariable("productId") String productId) {
+                                @PathVariable("categoryId") String categoryId,
+                                @PathVariable("colorId") String colorId,
+                                @PathVariable("productId") String productId) {
 
-        arrivalRepositorie.save(arrival);
+        arrivalService.save(arrival);
 
         return "redirect:/category/" + categoryId + "/color/" + colorId + "/product/" + productId + "/arrivals";
     }
@@ -110,9 +104,8 @@ public class ProductArrivalController {
                                 @PathVariable("colorId") String colorId,
                                 @PathVariable("productId") String productId) {
 
-        arrivalRepositorie.deleteById(Long.parseLong(arrivalId));
+        arrivalService.deleteById(arrivalId);
 
         return "redirect:/category/" + categoryId + "/color/" + colorId + "/product/" + productId + "/arrivals";
     }
-
 }
