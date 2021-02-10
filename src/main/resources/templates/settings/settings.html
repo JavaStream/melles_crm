@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="parts/header :: header('Настройки')"></head>
+<body>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Главная </a></li>
+        <li class="breadcrumb-item active" aria-current="page">Настройки</li>
+    </ol>
+</nav>
+
+<div class="container base">
+        <div class="row"><h6><a href="/settings/orders">Статусы заказов</a></h6></div>
+        <div class="row"><h6><a href="/settings/clients">Статусы клиентов</a></h6></div>
+</div>
+
+
+<div th:replace="parts/footer :: bootstrap_script"/>
+</body>
+</html>

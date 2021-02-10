@@ -1,6 +1,9 @@
 package com.javastream.melles_crm.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -36,6 +39,10 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "color_id")
     private Color color;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
     private List<ProductArrival> productArrival;

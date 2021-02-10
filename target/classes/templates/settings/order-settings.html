@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-<head th:replace="parts/header :: header('Склад')"></head>
+<head th:replace="parts/header :: header('Статусы заказов - Настройка')"></head>
 
 <body>
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Главная </a></li>
-        <li class="breadcrumb-item active" aria-current="page">Приемка товара</li>
+        <li class="breadcrumb-item"><a href="/settings">Настройки </a></li>
+        <li class="breadcrumb-item active" aria-current="page">Статусы заказов</li>
     </ol>
 </nav>
 
@@ -18,52 +19,45 @@
 
             <thead class="thead">
             <tr>
-                <th scope="col">Категория</th>
-                <th scope="col">Описание</th>
-                <th scope="col"></th>
+                <th scope="col">Название</th>
+                <th scope="col">Порядок сортировки</th>
                 <th scope="col">
-                    <a href="#category_modal" id="btnadd" data-toggle="modal" title="Добавить категорию"><i
+                    <a href="#modal" id="btnadd" data-toggle="modal" title="Добавить статус"><i
                             class="bi bi-plus-square-fill icon-add-color"></i></a></th>
             </tr>
             </thead>
 
             <tbody>
-            <tr th:each="category : ${categories}">
-                <td><a th:href="@{/category/{id}/color(id=${category.id})}" th:utext="${category.name}"></a></td>
-                <td th:utext="${category.description}"></td>
-                <td><a th:href="@{/category/edit/{id}(id=${category.id})}"><i class="bi bi-pencil-square"></i></a>
+            <tr th:each="status : ${statuses}">
+                <td th:utext="${status.name}"></td>
+                <td th:utext="${status.number}"></td>
+                <td><a th:href="@{/settings/orders/edit/{id}(id=${status.id})}"><i class="bi bi-pencil-square"></i></a>
                 </td>
-                <td><a th:href="@{/category/delete/{id}(id=${category.id})}"><i class="bi bi-trash"></i></a></td>
+                <td><a th:href="@{/settings/orders/delete/{id}(id=${status.id})}"><i class="bi bi-trash"></i></a></td>
             </tr>
             </tbody>
 
         </table>
 
 
-        <div id="category_modal" class="modal fade">
+        <div id="modal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h6 class="modal-title">Новая категория </h6>
+                        <h6 class="modal-title">Новый статус </h6>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
 
                     <div class="modal-body">
 
-                        <form th:action="@{/category/add}" th:object="${newCategory}" th:method="POST" role="form">
+                        <form th:action="@{/settings/orders/add}" th:object="${newStatus}" th:method="POST" role="form">
                             <fieldset>
 
                                 <div class="form-group">
                                     <input type="text" name="name" id="name" th:field="*{name}"
                                            class="form-control input-lg" placeholder="Название">
                                 </div>
-
-                                <div class="form-group">
-                                    <input id="description" type="text" th:field="*{description}"
-                                           class="form-control input-lg" placeholder="Описание">
-                                </div>
-
 
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-6 col-md-6"></div>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="parts/header :: header('Заказы')"></head>
+
+<body>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Главная </a></li>
+        <li class="breadcrumb-item active" aria-current="page">Заказы</li>
+    </ol>
+</nav>
+
+<div class="container base">
+    <div class="row">
+
+        <table class="table table-hover">
+
+            <thead class="thead">
+            <tr>
+                <th scope="col">№ ЗАКАЗА</th>
+                <th scope="col">КЛИЕНТ</th>
+                <th scope="col">ДАТА</th>
+                <th scope="col">СУММА</th>
+                <th scope="col">СТАТУС</th>
+                <th scope="col">
+                    <a href="#modal" id="btnadd" data-toggle="modal" title="Добавить заказ"><i
+                            class="bi bi-plus-square-fill icon-add-color"></i></a></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="order : ${orders}">
+                <td th:utext="${order.number}"></td>
+                <td><a th:href="@{/clients/{id}(id=${order.getUser().getId()})}"
+                       th:utext="${order.getUser().getName()}"></a></td>
+                <td th:utext="${order.date}"></td>
+                <td>Сумма</p></td>
+                <td th:utext="${order.getStatus().getName()}"></td>
+
+                <td><a th:href="@{/orders/edit/{id}(id=${order.id})}"><i class="bi bi-pencil-square"></i></a>
+                </td>
+                <td><a th:href="@{/orders/delete/{id}(id=${order.id})}"><i class="bi bi-trash"></i></a></td>
+
+            </tr>
+            </tbody>
+
+        </table>
+
+
+        <div id="modal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h6 class="modal-title">Новый заказ </h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form th:action="@{/orders/add}" th:object="${newOrder}" th:method="POST" role="form">
+                            <fieldset>
+
+                                <div class="form-group">
+                                    <input name="id" type="text" th:field="*{id}"
+                                           class="form-control input-lg" hidden="hidden">
+                                </div>
+
+                                <div class="form-group">
+                                    <input name="number" type="text" th:field="*{number}"
+                                           class="form-control input-lg" placeholder="Номер">
+                                </div>
+
+                                <div class="form-group">
+                                    <input name="date" type="date" th:field="*{date}"
+                                           class="form-control input-lg" placeholder="Дата">
+                                </div>
+
+                                <!-- живой поиск по клиентам -->
+                                <div class="form-group">
+                                    <input type="text" style="width: 50%;" class="form-control" id="search_2"
+                                           placeholder="Поиск по клиентам">
+                                </div>
+
+                                <div class="form-group">
+                                    <select name="status" class="form-control selectpicker" th:field="*{status}">
+                                        <option value="0" th:disabled="disabled">Статус заказа</option>
+                                        <option th:each="stat : ${orderStatuses}" th:value="${stat.id}"
+                                                th:text="${stat.name}"></option>
+                                    </select>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <select name="user" class="form-control selectpicker" th:field="*{user}" size="7">
+                                        <option th:each="us : ${users}" th:value="${us.id}"
+                                                th:text="${us.name}"></option>
+                                    </select>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-6"></div>
+                                    <div class="col-xs-3 col-sm-3 col-md-3">
+                                        <input type="submit" id="save" class="btn btn-xs btn-success btn-block"
+                                               value="Сохранить">
+                                    </div>
+                                    <div class="col-xs-3 col-sm-3 col-md-3">
+                                        <a href="" class="btn btn-xs btn-default btn-block">Закрыть</a>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div th:replace="parts/footer :: bootstrap_script"></div>
+
+<script type="text/javascript" th:inline="javascript" th:src="@{/js/serch_clients_in_inputfield.js}"></script>
+</body>
+</html>

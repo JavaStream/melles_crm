@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="parts/header :: header('Клиенты')"></head>
+
+<body>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Главная</a></li>
+        <li class="breadcrumb-item"><a href="/clients">Клиенты</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Редактирование</li>
+    </ol>
+</nav>
+
+<div class="container base">
+    <div class="row">
+
+        <form class="col s12" th:action="@{/clients/update}" th:object="${user}" th:method="POST">
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="ids">Номер</label>
+                    <input name="id" type="text" class="form-control" id="ids" th:field="*{id}" readonly="readonly">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="name">Имя: </label>
+                    <input name="name" type="text" id="name" class="form-control" th:field="*{name}">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="email">Почта: </label>
+                    <input name="email" type="text" id="email" class="form-control" th:field="*{email}">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="website">Сайт: </label>
+                    <input name="website" type="text" id="website" class="form-control" th:field="*{website}">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="phones">Телефоны: </label>
+                    <input name="phones" type="text" id="phones" class="form-control" th:field="*{phones}">
+                </div>
+            </div>
+
+            <div class="row">
+                <div>
+                    <input type="submit" value="Сохранить" class="btn btn-success">
+                    <a th:href="@{/clients}" th:utext="Назад" class="btn btn-link"></a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+</div>
+
+<div th:replace="parts/footer :: bootstrap_script"></div>
+</body>
+</html>
