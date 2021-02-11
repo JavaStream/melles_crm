@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -14,24 +14,17 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "orders")
-public class Order {
+@Table(name = "products_in_cart")
+public class ProductInShoppingCart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String number;
-
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    private Date date;
+    private ShoppingCart shoppingCart;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "status_id")
-    private OrderStatus status;
-
-
+    @JoinColumn(name = "product_id")
+    private Product product;
 }
