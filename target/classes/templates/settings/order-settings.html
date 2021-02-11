@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="parts/header :: header('Статусы заказов - Настройка')"></head>
 
@@ -21,6 +22,7 @@
             <tr>
                 <th scope="col">Название</th>
                 <th scope="col">Порядок сортировки</th>
+                <th scope="col">Цвет текста</th>
                 <th scope="col">
                     <a href="#modal" id="btnadd" data-toggle="modal" title="Добавить статус"><i
                             class="bi bi-plus-square-fill icon-add-color"></i></a></th>
@@ -31,6 +33,7 @@
             <tr th:each="status : ${statuses}">
                 <td th:utext="${status.name}"></td>
                 <td th:utext="${status.number}"></td>
+                <td th:utext="${status.color}"></td>
                 <td><a th:href="@{/settings/orders/edit/{id}(id=${status.id})}"><i class="bi bi-pencil-square"></i></a>
                 </td>
                 <td><a th:href="@{/settings/orders/delete/{id}(id=${status.id})}"><i class="bi bi-trash"></i></a></td>
@@ -57,6 +60,11 @@
                                 <div class="form-group">
                                     <input type="text" name="name" id="name" th:field="*{name}"
                                            class="form-control input-lg" placeholder="Название">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" name="color" id="color" th:field="*{color}"
+                                           class="form-control input-lg" placeholder="Цвет">
                                 </div>
 
                                 <div class="row">

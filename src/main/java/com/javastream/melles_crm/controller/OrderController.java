@@ -4,6 +4,7 @@ import com.javastream.melles_crm.model.Order;
 import com.javastream.melles_crm.model.OrderStatus;
 import com.javastream.melles_crm.model.User;
 import com.javastream.melles_crm.service.OrderService;
+import com.javastream.melles_crm.service.ProductService;
 import com.javastream.melles_crm.service.SettingService;
 import com.javastream.melles_crm.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -20,11 +21,15 @@ public class OrderController {
     private OrderService orderService;
     private UserService userService;
     private SettingService settingService;
+    private ProductService productService;
 
-    public OrderController(OrderService orderService, UserService userService, SettingService settingService) {
+    public OrderController(OrderService orderService, UserService userService,
+                           SettingService settingService, ProductService productService) {
+
         this.orderService = orderService;
         this.userService = userService;
         this.settingService = settingService;
+        this.productService = productService;
     }
 
     @GetMapping
@@ -56,18 +61,21 @@ public class OrderController {
 
     @GetMapping("/edit/{id}")
     public String editOrderForm(@PathVariable("id") String id, Model model) {
-       /* User user = userService.findById(id);
+        Order order = orderService.findById(id);
+        List<OrderStatus> orderStatuses = settingService.findOrderStatuses();
 
-        model.addAttribute("user", user);
-*/
-        return "clients/userEdit";
+        model.addAttribute("order", order);
+        model.addAttribute("orderStatuses", orderStatuses);
+        model.addAttribute("users", userService.findAll());
+
+        return "orders/orderEdit";
     }
 
     @PostMapping("/update")
-    public String updateOrder(@ModelAttribute("user") User user) {
-        /*     userService.save(user);*/
+    public String updateOrder(@ModelAttribute("order") Order order) {
+       orderService.save(order);
 
-        return "redirect:/clients";
+        return "redirect:/orders";
     }
 
     @GetMapping("/delete/{id}")
@@ -75,5 +83,20 @@ public class OrderController {
         //       userService.deleteById(id);
 
         return "redirect:/clients";
+    }
+
+
+    /*
+        ORDER ENTITY
+     */
+
+    @GetMapping("/orders/{id}")
+    public String getOrder(@PathVariable("id") String id, Model model) {
+        Order order = orderService.findById(id);
+        //productService.
+
+        model.addAttribute("order", order);
+
+        return "orders/order/order";
     }
 }

@@ -9,30 +9,36 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Главная </a></li>
-        <li class="breadcrumb-item active" aria-current="page">Заказы</li>
+        <li class="breadcrumb-item"><a href="/orders">Заказы </a></li>
+        <li class="breadcrumb-item active" aria-current="page">Просмотр</li>
     </ol>
 </nav>
 
 <div class="container base">
+<div class="row">
+    <h4 th:utext="${order.getUser().getName()}"></h4>
+    <h6 th:utext="${order.getNumber()}"></h6>
+</div>
+
     <div class="row">
 
         <table class="table table-hover">
 
             <thead class="thead">
             <tr>
-                <th scope="col">№ ЗАКАЗА</th>
-                <th scope="col">КЛИЕНТ</th>
-                <th scope="col">ДАТА</th>
-                <th scope="col">СУММА</th>
-                <th scope="col">СТАТУС</th>
+                <th scope="col">Категория</th>
+                <th scope="col">Товар</th>
+                <th scope="col">Размер</th>
+                <th scope="col">Кол-во</th>
+                <th scope="col">Цена</th>
                 <th scope="col">
-                    <a href="#modal" id="btnadd" data-toggle="modal" title="Добавить заказ"><i
+                    <a href="#modal" id="btnadd" data-toggle="modal" title="Добавить товар"><i
                             class="bi bi-plus-square-fill icon-add-color"></i></a></th>
             </tr>
             </thead>
 
             <tbody>
-            <tr th:each="order : ${orders}">
+            <tr>
                 <td th:href="@{/orders/{id}(id=${order.getId()})}" th:utext="${order.number}"></td>
                 <td><a th:href="@{/clients/{id}(id=${order.getUser().getId()})}"
                        th:utext="${order.getUser().getName()}"></a></td>

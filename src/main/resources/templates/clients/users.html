@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="parts/header :: header('Клиенты')"></head>
 
@@ -72,7 +73,7 @@
 
                                 <div class="form-group">
                                     <input name="name" type="text" th:field="*{name}"
-                                           class="form-control input-lg" placeholder="Имя">
+                                           class="form-control input-lg" placeholder="Клиент">
                                 </div>
 
                                 <div class="form-group">

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="parts/header :: header('Статусы заказов - Настройка')"></head>
+
+
+<body>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Главная </a></li>
+        <li class="breadcrumb-item"><a href="/orders">Заказы </a></li>
+        <li class="breadcrumb-item active" aria-current="page">Редактирование</li>
+    </ol>
+</nav>
+
+<div class="container base">
+    <div class="row">
+
+        <form class="col-md-7"
+              th:action="@{/orders/update}" th:object="${order}" th:method="POST">
+
+            <div class="form-group">
+                <input name="id" id="ids" type="text" class="form-control" th:field="*{id}" hidden="hidden">
+            </div>
+
+
+            <div class="form-group">
+                <label for="number">Номер</label>
+                <input name="number" id="number" type="text" class="form-control" th:field="*{number}">
+            </div>
+
+            <div class="form-group">
+                <label for="date">Дата</label>
+                <input name="date" id="date" type="date" class="form-control" th:field="*{date}">
+            </div>
+
+            <div class="form-group">
+                <label for="number">Статус заказа</label>
+                <select name="status" class="form-control selectpicker" th:field="*{status}">
+                    <option value="0" th:disabled="disabled">Статус заказа</option>
+                    <option th:each="stat : ${orderStatuses}"
+                            th:value="${stat.id}" th:text="${stat.name}"></option>
+                </select>
+            </div>
+
+            <!-- живой поиск по клиентам -->
+            <div class="form-group">
+                <input type="text" style="width: 50%;" class="form-control" id="search_2"
+                       th:placeholder="${order.user.name}">
+            </div>
+
+
+            <div class="form-group">
+                <select name="user" class="form-control selectpicker" th:field="*{user}" size="7">
+                    <option th:each="us : ${users}" th:value="${us.id}"
+                            th:text="${us.name}" th:selected="${us.name} == ${order.user.name}"></option>
+                </select>
+            </div>
+
+
+            <div>
+                <input type="submit" value="Сохранить" class="btn btn-success">
+                <a th:href="@{/orders}" th:utext="Назад" class="btn btn-link"></a>
+            </div>
+        </form>
+    </div>
+
+</div>
+</div>
+
+<div th:replace="parts/footer :: bootstrap_script"></div>
+<script type="text/javascript" th:inline="javascript" th:src="@{/js/serch_clients_in_inputfield.js}"></script>
+</body>
+</html>

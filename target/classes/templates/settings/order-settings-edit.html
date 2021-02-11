@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="parts/header :: header('Статусы заказов - Настройка')"></head>
 
@@ -23,7 +24,7 @@
             <div class="row">
                 <div class="form-group">
                     <label for="ids">Номер</label>
-                    <input name="id" id="ids" type="text" class="form-control" th:field="*{id}" readonly="readonly">
+                    <input name="id" id="ids" type="text" class="form-control" th:field="*{id}" hidden="hidden">
                 </div>
             </div>
 
@@ -36,8 +37,15 @@
 
             <div class="row">
                 <div class="form-group">
-                    <label for="number">Описание</label>
+                    <label for="number">Сортировка</label>
                     <input name="number" id="number" type="text" class="form-control" th:field="*{number}">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="color">Цвет</label>
+                    <input name="color" id="color" type="text" class="form-control" th:field="*{color}">
                 </div>
             </div>
 

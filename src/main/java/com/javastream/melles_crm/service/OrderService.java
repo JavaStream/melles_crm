@@ -1,6 +1,7 @@
 package com.javastream.melles_crm.service;
 
 import com.javastream.melles_crm.model.Order;
+import com.javastream.melles_crm.model.OrderStatus;
 import com.javastream.melles_crm.repo.OrderRepositorie;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,12 @@ public class OrderService {
     public void deleteById(String id) {
         long orderId = Long.parseLong(id);
         orderRepositorie.deleteById(orderId);
+    }
+
+    public List<Order> findByOrderStatus(OrderStatus orderStatus) {
+        List<Order> orders = orderRepositorie.findByStatus(orderStatus);
+
+        return orders;
     }
 
 }

@@ -22,4 +22,6 @@ public class OrderStatus {
     private String name;
 
     private int number;
+
+    private String color;
 }

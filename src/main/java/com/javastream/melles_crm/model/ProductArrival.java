@@ -26,7 +26,6 @@ public class ProductArrival {
     @Column(nullable = false)
     private Long count;
 
-    //@Convert(converter = LocalDateAttributeConverter.class)
     @Column(nullable = false)
     private Date date;
 

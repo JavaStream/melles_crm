@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="parts/header :: header('Заказы')"></head>
 
@@ -32,12 +33,17 @@
 
             <tbody>
             <tr th:each="order : ${orders}">
-                <td th:utext="${order.number}"></td>
+                <td th:href="@{/orders/{id}(id=${order.getId()})}" th:utext="${order.number}"></td>
                 <td><a th:href="@{/clients/{id}(id=${order.getUser().getId()})}"
                        th:utext="${order.getUser().getName()}"></a></td>
-                <td th:utext="${order.date}"></td>
+                <td th:utext="${#dates.format(order.date, 'dd.MM.yyyy')}"></td>
                 <td>Сумма</p></td>
-                <td th:utext="${order.getStatus().getName()}"></td>
+
+                <td>
+                    <span th:if="${order.getStatus()}" th:style="'color: ' + ${order.getStatus().color}"
+                          th:utext="${order.getStatus().getName()}" />
+                    <span th:unless="${order.getStatus()}"><a th:href="@{/settings/orders}">Не определен</a></span>
+                </td>
 
                 <td><a th:href="@{/orders/edit/{id}(id=${order.id})}"><i class="bi bi-pencil-square"></i></a>
                 </td>
@@ -78,11 +84,7 @@
                                            class="form-control input-lg" placeholder="Дата">
                                 </div>
 
-                                <!-- живой поиск по клиентам -->
-                                <div class="form-group">
-                                    <input type="text" style="width: 50%;" class="form-control" id="search_2"
-                                           placeholder="Поиск по клиентам">
-                                </div>
+
 
                                 <div class="form-group">
                                     <select name="status" class="form-control selectpicker" th:field="*{status}">
@@ -92,6 +94,11 @@
                                     </select>
                                 </div>
 
+                                <!-- живой поиск по клиентам -->
+                                <div class="form-group">
+                                    <input type="text" style="width: 50%;" class="form-control" id="search_2"
+                                           placeholder="Поиск по клиентам">
+                                </div>
 
                                 <div class="form-group">
                                     <select name="user" class="form-control selectpicker" th:field="*{user}" size="7">

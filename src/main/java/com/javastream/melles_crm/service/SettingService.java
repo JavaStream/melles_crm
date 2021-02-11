@@ -1,7 +1,9 @@
 package com.javastream.melles_crm.service;
 
+import com.javastream.melles_crm.model.Order;
 import com.javastream.melles_crm.model.OrderStatus;
 import com.javastream.melles_crm.model.User;
+import com.javastream.melles_crm.repo.OrderRepositorie;
 import com.javastream.melles_crm.repo.OrderStatusRepositorie;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +16,11 @@ import java.util.stream.Collectors;
 public class SettingService {
 
     private OrderStatusRepositorie orderStatusRepositorie;
+    private OrderService orderService;
 
-    public SettingService(OrderStatusRepositorie orderStatusRepositorie) {
+    public SettingService(OrderStatusRepositorie orderStatusRepositorie, OrderService orderService) {
         this.orderStatusRepositorie = orderStatusRepositorie;
+        this.orderService = orderService;
     }
 
     public List<OrderStatus> findOrderStatuses() {
@@ -44,6 +48,15 @@ public class SettingService {
     }
 
     public void deleteOrderStatus(OrderStatus status) {
+        // Найти все заказы, в которых есть ссылка на статус и проставить null
+        List<Order> orders = orderService.findByOrderStatus(status);
+
+        for (Order order : orders) {
+            order.setStatus(null);
+
+            orderService.save(order);
+        }
+
         orderStatusRepositorie.delete(status);
     }
 

@@ -33,6 +33,8 @@ public class Order {
     @JoinColumn(name = "status_id")
     private OrderStatus status;
 
+    /*
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<Product> products;
+    */
 }
