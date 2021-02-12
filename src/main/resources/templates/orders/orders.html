@@ -33,7 +33,7 @@
 
             <tbody>
             <tr th:each="order : ${orders}">
-                <td th:href="@{/orders/{id}(id=${order.getId()})}" th:utext="${order.number}"></td>
+                <td><a th:href="@{/orders/{id}(id=${order.getId()})}" th:utext="${order.number}"></a></td>
                 <td><a th:href="@{/clients/{id}(id=${order.getUser().getId()})}"
                        th:utext="${order.getUser().getName()}"></a></td>
                 <td th:utext="${#dates.format(order.date, 'dd.MM.yyyy')}"></td>

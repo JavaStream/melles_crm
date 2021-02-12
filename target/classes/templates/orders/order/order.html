@@ -15,10 +15,10 @@
 </nav>
 
 <div class="container base">
-<div class="row">
-    <h4 th:utext="${order.getUser().getName()}"></h4>
-    <h6 th:utext="${order.getNumber()}"></h6>
-</div>
+
+    <div class="row"><h4 th:utext="${order.getUser().getName()}"></h4></div>
+    <div class="row"><h6 th:utext="'Заказ ' + ${order.getNumber()} + '.'"></h6></div>
+
 
     <div class="row">
 
@@ -38,22 +38,23 @@
             </thead>
 
             <tbody>
-            <tr>
-                <td th:href="@{/orders/{id}(id=${order.getId()})}" th:utext="${order.number}"></td>
-                <td><a th:href="@{/clients/{id}(id=${order.getUser().getId()})}"
-                       th:utext="${order.getUser().getName()}"></a></td>
-                <td th:utext="${#dates.format(order.date, 'dd.MM.yyyy')}"></td>
-                <td>Сумма</p></td>
+            <tr th:each="product : ${products}">
 
-                <td>
-                    <span th:if="${order.getStatus()}" th:style="'color: ' + ${order.getStatus().color}"
-                          th:utext="${order.getStatus().getName()}" />
-                    <span th:unless="${order.getStatus()}"><a th:href="@{/settings/orders}">Не определен</a></span>
-                </td>
+                <td th:utext="${product.getProduct().getColor().getCategory().getName()}"></td>
 
-                <td><a th:href="@{/orders/edit/{id}(id=${order.id})}"><i class="bi bi-pencil-square"></i></a>
+                <td th:utext="${product.getProduct().getName()}"></td>
+
+                <td th:utext="${product.getSize()}"></td>
+
+                <td th:utext="${product.getCount()}"></td>
+
+                <td th:utext="${product.getPrice()}"></td>
+
+                <td><a th:href="@{/orders/{id}/edit/{productId}(id=${order.id}, productId=${product.getId()})}"><i
+                        class="bi bi-pencil-square"></i></a>
                 </td>
-                <td><a th:href="@{/orders/delete/{id}(id=${order.id})}"><i class="bi bi-trash"></i></a></td>
+                <td><a th:href="@{/orders/{id}/delete/{productId}(id=${order.id}, productId=${product.getId()})}"><i
+                        class="bi bi-trash"></i></a></td>
 
             </tr>
             </tbody>
@@ -66,13 +67,14 @@
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h6 class="modal-title">Новый заказ </h6>
+                        <h6 class="modal-title">Новый товар </h6>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
 
                     <div class="modal-body">
 
-                        <form th:action="@{/orders/add}" th:object="${newOrder}" th:method="POST" role="form">
+                        <form th:action="@{/orders/{id}/add(id=${order.id})}" th:object="${newProduct}" th:method="POST"
+                              role="form">
                             <fieldset>
 
                                 <div class="form-group">
@@ -81,35 +83,37 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <input name="number" type="text" th:field="*{number}"
-                                           class="form-control input-lg" placeholder="Номер">
+                                    <input name="count" type="text" th:field="*{count}"
+                                           class="form-control input-lg" placeholder="Кол-во">
                                 </div>
 
                                 <div class="form-group">
-                                    <input name="date" type="date" th:field="*{date}"
-                                           class="form-control input-lg" placeholder="Дата">
+                                    <input name="size" type="text" th:field="*{size}"
+                                           class="form-control input-lg" placeholder="Размер">
                                 </div>
 
-
+                                <div class="form-group">
+                                    <input name="price" type="text" th:field="*{price}"
+                                           class="form-control input-lg" placeholder="Цена">
+                                </div>
 
                                 <div class="form-group">
-                                    <select name="status" class="form-control selectpicker" th:field="*{status}">
-                                        <option value="0" th:disabled="disabled">Статус заказа</option>
-                                        <option th:each="stat : ${orderStatuses}" th:value="${stat.id}"
-                                                th:text="${stat.name}"></option>
+                                    <select name="category" id="category" class="form-control selectpicker category">
+                                        <option value="0" selected="selected" disabled>--Выберите категорию--</option>
+                                        <option th:each="category : ${categories}" th:value="${category.id}"
+                                                th:text="${category.name}"></option>
                                     </select>
                                 </div>
 
-                                <!-- живой поиск по клиентам -->
-                                <div class="form-group">
-                                    <input type="text" style="width: 50%;" class="form-control" id="search_2"
-                                           placeholder="Поиск по клиентам">
+                                <div class="color form-group">
+                                    <select name="color" id="color" class="form-control selectpicker color">
+                                        <option value="0" selected="selected" disabled>--Выберите цвет--</option>
+                                    </select>
                                 </div>
 
-                                <div class="form-group">
-                                    <select name="user" class="form-control selectpicker" th:field="*{user}" size="7">
-                                        <option th:each="us : ${users}" th:value="${us.id}"
-                                                th:text="${us.name}"></option>
+                                <div class="models form-group">
+                                    <select name="productId" id="product" class="form-control selectpicker product">
+                                        <option value="0" selected="selected" disabled>--Выберите товар--</option>
                                     </select>
                                 </div>
 
@@ -142,6 +146,83 @@
 
 <div th:replace="parts/footer :: bootstrap_script"></div>
 
-<script type="text/javascript" th:inline="javascript" th:src="@{/js/serch_clients_in_inputfield.js}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#btnadd').on('click', function () {
+
+            setupDefaultSelectForCategoryField();
+            setupDefaultSelectForColorField();
+            setupDefaultSelectForProductField();
+
+            $("#category").change(function () {
+                $("#color").removeAttr('disabled');
+                reloadColorPicker();
+            });
+
+            $("#color").change(function () {
+                $("#product").removeAttr('disabled');
+                reloadProductPicker();
+            });
+
+        });
+    });
+
+    function setupDefaultSelectForCategoryField() {
+        $('#category option:first').prop('selected', true);
+    }
+
+    function setupDefaultSelectForColorField() {
+        $('#color option:first').prop('selected', true);
+        $("#color").attr('disabled', 'disabled');
+    }
+
+    function setupDefaultSelectForProductField() {
+        $('#product option:first').prop('selected', true);
+        $("#product").attr('disabled', 'disabled');
+    }
+
+
+    function reloadColorPicker() {
+        var category = $("#category").val();
+
+        $.get("/util/colors?categoryId=" + category, function (data) {
+            var colors = JSON.parse(data);
+
+            $("#color").empty();
+
+            var option = "<option value='0' selected='selected' disabled>--Выберите цвет--</option>";
+            $("#color").append(option);
+
+            for (var id in colors) {
+                option = "<option value = " + id + ">" + colors[id] + "</option>";
+                $("#color").append(option);
+            }
+        });
+    };
+
+
+    function reloadProductPicker() {
+        var color = $("#color").val();
+
+        $.get("/util/products?colorId=" + color, function (data) {
+            var products = JSON.parse(data);
+
+            $("#product").empty();
+
+            var option = "<option value='0' selected='selected' disabled>--Выберите товар--</option>";
+            $("#product").append(option);
+
+            for (var id in products) {
+                option = "<option value = " + id + ">" + products[id] + "</option>";
+                $("#product").append(option);
+            }
+        });
+    };
+</script>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 </body>
 </html>

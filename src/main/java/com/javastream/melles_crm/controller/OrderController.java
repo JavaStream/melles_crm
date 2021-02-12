@@ -1,12 +1,7 @@
 package com.javastream.melles_crm.controller;
 
-import com.javastream.melles_crm.model.Order;
-import com.javastream.melles_crm.model.OrderStatus;
-import com.javastream.melles_crm.model.User;
-import com.javastream.melles_crm.service.OrderService;
-import com.javastream.melles_crm.service.ProductService;
-import com.javastream.melles_crm.service.SettingService;
-import com.javastream.melles_crm.service.UserService;
+import com.javastream.melles_crm.model.*;
+import com.javastream.melles_crm.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,14 +16,15 @@ public class OrderController {
     private OrderService orderService;
     private UserService userService;
     private SettingService settingService;
+    private CategoryService categoryService;
     private ProductService productService;
 
-    public OrderController(OrderService orderService, UserService userService,
-                           SettingService settingService, ProductService productService) {
-
+    public OrderController(OrderService orderService, UserService userService, SettingService settingService,
+                           CategoryService categoryService, ProductService productService) {
         this.orderService = orderService;
         this.userService = userService;
         this.settingService = settingService;
+        this.categoryService = categoryService;
         this.productService = productService;
     }
 
@@ -51,9 +47,7 @@ public class OrderController {
     }
 
     @PostMapping("/add")
-    public String addOrder(@ModelAttribute("order") Order order, Model model) {
-        Date date = order.getDate();
-        Long id = order.getId();
+    public String addOrder(@ModelAttribute("order") Order order) {
         orderService.save(order);
 
         return "redirect:/orders";
@@ -80,23 +74,55 @@ public class OrderController {
 
     @GetMapping("/delete/{id}")
     public String deleteOrder(@PathVariable("id") String id) {
-        //       userService.deleteById(id);
+       orderService.deleteById(id);
 
-        return "redirect:/clients";
+       return "redirect:/orders";
     }
 
 
     /*
-        ORDER ENTITY
+        ORDER ENRIES
      */
 
-    @GetMapping("/orders/{id}")
-    public String getOrder(@PathVariable("id") String id, Model model) {
-        Order order = orderService.findById(id);
-        //productService.
+    @GetMapping("/{orderId}")
+    public String getOrder(@PathVariable("orderId") String orderId, Model model) {
+        Order order = orderService.findById(orderId);
+        List<ProductInOrder> productsInOrder = orderService.findProductsInOrder(order);
+
+        List<Category> categories = categoryService.findAll();
 
         model.addAttribute("order", order);
+        model.addAttribute("categories", categories);
+        model.addAttribute("products", productsInOrder);
+        model.addAttribute("newProduct", new ProductInOrder());
 
         return "orders/order/order";
+    }
+
+    @GetMapping("/{orderId}/delete/{productId}")
+    public String deleteProductInOrder(@PathVariable("orderId") String orderId,
+                                       @PathVariable("productId") String productId) {
+
+        orderService.deleteProductInOrder(productId);
+
+        return "redirect:/orders/"+orderId;
+    }
+
+    @PostMapping("/{id}/add")
+    public String addProductInOrder(@ModelAttribute("product") ProductInOrder productInOrder,
+                                    @PathVariable("id") String orderId,
+                                    @RequestParam String category,
+                                    @RequestParam String color,
+                                    @RequestParam String productId) {
+
+        Order order = orderService.findById(orderId);
+        Product product = productService.findById(productId);
+
+        productInOrder.setOrder(order);
+        productInOrder.setProduct(product);
+
+        orderService.saveProductInOrder(productInOrder);
+
+        return "redirect:/orders/"+orderId;
     }
 }

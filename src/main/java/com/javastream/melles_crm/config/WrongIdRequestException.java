@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class WrongIdRequestException {
-
+/*
     @ExceptionHandler(IllegalStateException.class)
     public String handleIllegalStateException(Model model) {
         return "notFound";
@@ -16,4 +16,5 @@ public class WrongIdRequestException {
     public String handleException(Model model) {
         return "notFound";
     }
+    */
 }

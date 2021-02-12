@@ -27,7 +27,7 @@ public class Product {
     @Column(nullable = false)
     private String size;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String articul;
 
     @Column(nullable = false)

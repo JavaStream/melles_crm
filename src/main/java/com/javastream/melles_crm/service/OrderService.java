@@ -2,7 +2,9 @@ package com.javastream.melles_crm.service;
 
 import com.javastream.melles_crm.model.Order;
 import com.javastream.melles_crm.model.OrderStatus;
+import com.javastream.melles_crm.model.ProductInOrder;
 import com.javastream.melles_crm.repo.OrderRepositorie;
+import com.javastream.melles_crm.repo.ProductInOrderRepositorie;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -13,9 +15,12 @@ import java.util.stream.Collectors;
 public class OrderService {
 
     private OrderRepositorie orderRepositorie;
+    private ProductInOrderRepositorie productInOrderRepositorie;
 
-    public OrderService(OrderRepositorie orderRepositorie) {
+
+    public OrderService(OrderRepositorie orderRepositorie, ProductInOrderRepositorie productInOrderRepositorie) {
         this.orderRepositorie = orderRepositorie;
+        this.productInOrderRepositorie = productInOrderRepositorie;
     }
 
     public List<Order> findAll() {
@@ -41,6 +46,20 @@ public class OrderService {
         List<Order> orders = orderRepositorie.findByStatus(orderStatus);
 
         return orders;
+    }
+
+    public List<ProductInOrder> findProductsInOrder(Order order) {
+        List<ProductInOrder> products = productInOrderRepositorie.findByOrder(order);
+        return products;
+    }
+
+    public void saveProductInOrder(ProductInOrder productInOrder) {
+        productInOrderRepositorie.save(productInOrder);
+    }
+
+    public void deleteProductInOrder(String productInOrderId) {
+        long id = Long.parseLong(productInOrderId);
+        productInOrderRepositorie.deleteById(id);
     }
 
 }

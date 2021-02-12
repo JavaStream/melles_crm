@@ -29,9 +29,10 @@ public class Order {
 
     private Date date;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "status_id")
     private OrderStatus status;
 
-
+    @OneToMany(mappedBy = "order", cascade = CascadeType.REMOVE)
+    private List<ProductInOrder> productsInOrders;
 }

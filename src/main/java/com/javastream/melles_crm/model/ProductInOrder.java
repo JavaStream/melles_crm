@@ -14,17 +14,23 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "shopping_carts")
-public class ShoppingCart {
+@Table(name = "products_in_order")
+public class ProductInOrder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "order_id")
+    @ManyToOne
     private Order order;
 
-    @OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.REMOVE)
-    private List<ProductInShoppingCart> productsInCart;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    private Long count;
+
+    private String size;
+
+    private BigDecimal price;
 }
