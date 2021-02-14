@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/*
+  Статус заказа "Завершено" определяется как последний порядковый номер созданных статусов.
+ */
+
+
 @Controller
 @RequestMapping("/settings")
 public class SettingsController {

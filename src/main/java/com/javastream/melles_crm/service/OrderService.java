@@ -62,4 +62,10 @@ public class OrderService {
         productInOrderRepositorie.deleteById(id);
     }
 
+    public List<Order> findActiveOrders(OrderStatus orderStatus) {
+        List<Order> orders = orderRepositorie.findByStatusNot(orderStatus);
+
+        return orders;
+    }
+
 }
