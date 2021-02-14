@@ -30,7 +30,5 @@ public class ProductInOrder {
 
     private Long count;
 
-    private String size;
-
     private BigDecimal price;
 }

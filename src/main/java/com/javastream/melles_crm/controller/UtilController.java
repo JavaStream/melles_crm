@@ -49,7 +49,7 @@ public class UtilController {
         List<Color> colors = colorService.findAllByCategory(category);
         Map<Long, String> map = new HashMap<>();
         for (Color color : colors) {
-            map.put(color.getId(), color.getName());
+            map.put(color.getId(), "Цвет - " + color.getName());
         }
 
         JSONObject resultMap = new JSONObject(map);
@@ -64,10 +64,16 @@ public class UtilController {
 
         Map<Long, String> map = new HashMap<>();
         for (Product product : products) {
-            map.put(product.getId(), product.getName());
+            map.put(product.getId(), "Арт. " + product.getArticul() + " | размер - " +product.getSize());
         }
 
         JSONObject resultMap = new JSONObject(map);
         return resultMap.toString();
+    }
+
+    @RequestMapping(value = "/product")
+    public String getProductPrice(@RequestParam String productId) {
+        Product product = productService.findById(productId);
+        return product.getPrice().toString();
     }
 }
