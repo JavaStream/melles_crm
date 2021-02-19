@@ -11,4 +11,6 @@ import java.util.List;
 public interface OrderRepositorie extends CrudRepository<Order, Long> {
     List<Order> findAll();
     List<Order> findByStatus(OrderStatus status);
+
+    List<Order> findByStatusNot(OrderStatus orderStatus);
 }

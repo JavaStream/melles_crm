@@ -40,12 +40,7 @@ public class Product {
     @JoinColumn(name = "color_id")
     private Color color;
 
-    /*
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
-    */
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "product")
     private List<ProductArrival> productArrival;
 }

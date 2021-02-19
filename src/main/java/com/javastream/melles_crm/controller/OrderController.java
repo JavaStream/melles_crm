@@ -118,6 +118,16 @@ public class OrderController {
         Order order = orderService.findById(orderId);
         Product product = productService.findById(productId);
 
+        //check count, min count = 1
+        if (productInOrder.getCount() == null) {
+            productInOrder.setCount(1L);
+        }
+
+        // set default price, if price is null
+        if (productInOrder.getPrice() == null) {
+            productInOrder.setPrice(product.getPrice());
+        }
+
         productInOrder.setOrder(order);
         productInOrder.setProduct(product);
 

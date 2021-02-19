@@ -1,71 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f469bd47-693b-4938-bca8-499f4a468e7e" name="Default Changelist" comment="" />
+    <list default="true" id="f469bd47-693b-4938-bca8-499f4a468e7e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/controller/StoreController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/model/Statistic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/service/ProductInOrderService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/store/categories.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/store/colors.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/store/products.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/StoreController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/Statistic.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/ProductInOrderService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/store/categories.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/store/colors.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/store/products.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d14ebe01-5add-4a70-9cc2-220c1b8b0819.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d14ebe01-5add-4a70-9cc2-220c1b8b0819/storage_v2/_src_/database/melles.xjvCvw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d14ebe01-5add-4a70-9cc2-220c1b8b0819/storage_v2/_src_/database/melles.xjvCvw/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d14ebe01-5add-4a70-9cc2-220c1b8b0819/storage_v2/_src_/database/melles.xjvCvw/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d14ebe01-5add-4a70-9cc2-220c1b8b0819/storage_v2/_src_/database/melles.xjvCvw/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/melles_crm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/melles_crm.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/controller/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/controller/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/controller/SettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/model/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/model/Color.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/repo/OrderRepositorie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/repo/OrderRepositorie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/repo/ProductInOrderRepositorie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/repo/ProductInOrderRepositorie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/orders/order/order.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/orders/order/order.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/melles_crm.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/MellesCrmApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/MellesCrmApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/CategoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/CategoryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/ColorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/ColorController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/MainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/OrderController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/ProductArrivalController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/ProductArrivalController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/ProductController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/SettingsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/SettingsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/UtilController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/UtilController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/Category.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/Category.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/Color.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/Color.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/OrderStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/OrderStatus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/ProductArrival.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/ProductArrival.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/ProductInOrder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/ProductInOrder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/UserType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/UserType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/repo/ColorRepositorie.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/repo/ColorRepositorie.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/repo/OrderRepositorie.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/repo/OrderRepositorie.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/repo/ProductArrivalRepositorie.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/repo/ProductArrivalRepositorie.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/repo/ProductInOrderRepositorie.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/repo/ProductInOrderRepositorie.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/repo/ProductRepositorie.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/repo/ProductRepositorie.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/CategoryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/CategoryService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/ColorService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/ColorService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/OrderService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/ProductArrivalService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/ProductArrivalService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/ProductService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/SettingService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/SettingService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/orders/order/order.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/orders/order/order.html" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
   <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_DATA_SOURCES" value="true" />
     <option name="GROUP_SCHEMA" value="true" />
     <option name="GROUP_CONTENTS" value="false" />
     <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
     <option name="SHOW_EMPTY_GROUPS" value="false" />
     <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <option name="HIDDEN_KINDS">
-      <set />
-    </option>
-    <expand>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="melles@localhost" type="feb32156:DbDataSourceImpl" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="melles@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="melles@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="melles: database" type="162271b6:PgImplModel$Database" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="melles@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="melles: database" type="162271b6:PgImplModel$Database" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="melles@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="melles: database" type="162271b6:PgImplModel$Database" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="melles@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="melles: database" type="162271b6:PgImplModel$Database" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
-        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="melles@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="roles" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-    </expand>
-    <select />
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="melles@localhost" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="melles@localhost" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$GroupNode" />
+      </PATH_ELEMENT>
+    </PATH>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -74,13 +119,20 @@
         <option value="Interface" />
         <option value="HTML File" />
         <option value="CSS File" />
-        <option value="Class" />
         <option value="JavaScript File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="D:\1_Programming\2_projects\IdeaProjects\melles_crm\.idea" />
+      </set>
+    </option>
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -93,6 +145,8 @@
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="postgresql" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -100,34 +154,41 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/templates/orders/order" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="PostgreSQL" />
+    <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
+    <property name="js.eslint.eslintPackage" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="Template Data Languages" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.javastream.melles_crm.model" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\1_Programming\2_projects\IdeaProjects\melles_crm\src\main\resources\templates\orders\order" />
-      <recent name="D:\1_Programming\2_projects\IdeaProjects\melles_crm\src\main\resources\templates\orders" />
-      <recent name="D:\1_Programming\2_projects\IdeaProjects\melles_crm\src\main\resources\templates\settings" />
-      <recent name="D:\1_Programming\2_projects\IdeaProjects\melles_crm\src\main\resources\templates\parts" />
-      <recent name="D:\1_Programming\2_projects\IdeaProjects\melles_crm\src\main\resources\templates\clients" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.javastream.melles_crm.controller" />
-      <recent name="com.javastream.melles_crm.repo" />
-      <recent name="com.javastream.melles_crm.model" />
-      <recent name="com.javastream.melles_crm.service" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\1_Programming\2_projects\IdeaProjects\melles_crm\src\main\resources" />
       <recent name="D:\1_Programming\2_projects\IdeaProjects\melles_crm\src\main\resources\public" />
       <recent name="D:\1_Programming\2_projects\IdeaProjects\melles_crm\src\main\resources\static\images" />
       <recent name="D:\1_Programming\2_projects\IdeaProjects\melles_crm\src\main\resources\static" />
       <recent name="D:\1_Programming\2_projects\IdeaProjects\melles_crm\src\main\resources\static\images\ing" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\1_Programming\2_projects\IdeaProjects\melles_crm\src\main\resources\templates\store" />
+      <recent name="D:\1_Programming\2_projects\IdeaProjects\melles_crm\src\main\resources\templates\orders\order" />
+      <recent name="D:\1_Programming\2_projects\IdeaProjects\melles_crm\src\main\resources\templates\orders" />
+      <recent name="D:\1_Programming\2_projects\IdeaProjects\melles_crm\src\main\resources\templates\settings" />
+      <recent name="D:\1_Programming\2_projects\IdeaProjects\melles_crm\src\main\resources\templates\parts" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.javastream.melles_crm.service" />
+      <recent name="com.javastream.melles_crm.controller" />
+      <recent name="com.javastream.melles_crm.repo" />
+      <recent name="com.javastream.melles_crm.model" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.javastream.melles_crm.model" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -143,12 +204,112 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="MellesCrmApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="melles_crm" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.javastream.melles_crm.MellesCrmApplication" />
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails">
+      <setting name="vmparams" value="" />
+      <setting name="cmdLine" value="run-app" />
+      <setting name="passParentEnv" value="true" />
+      <setting name="launchBrowser" value="true" />
+      <setting name="launchBrowserUrl" value="" />
+      <setting name="depsClasspath" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <module name="" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MellesCrmApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="melles_crm" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.javastream.melles_crm.MellesCrmApplication" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method v="2" />
     </configuration>
   </component>
   <component name="SvnConfiguration">
@@ -162,7 +323,12 @@
       <option name="presentableId" value="Default" />
       <updated>1612155586271</updated>
       <workItem from="1612155591053" duration="86374000" />
-      <workItem from="1612538558509" duration="182022000" />
+      <workItem from="1612538558509" duration="178925000" />
+      <workItem from="1613212680590" duration="730000" />
+      <workItem from="1613221808403" duration="27000" />
+      <workItem from="1613221927966" duration="1810000" />
+      <workItem from="1613224669165" duration="17632000" />
+      <workItem from="1613310057186" duration="8935000" />
     </task>
     <servers />
   </component>
@@ -174,20 +340,94 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
   </component>
-  <component name="XDebuggerManager">
-    <watches-manager>
-      <configuration name="SpringBootApplicationConfigurationType">
-        <watch expression="method.parameters" />
-      </configuration>
-    </watches-manager>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/melles_crm$MellesCrmApplication.ic" NAME="MellesCrmApplication Coverage Results" MODIFIED="1612620361562" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>melles_crm</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

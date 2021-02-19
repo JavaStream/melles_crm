@@ -160,6 +160,7 @@
                 var productId = this.value;
                 $.get("/util/product?productId=" + productId, function (data) {
                     $('#price').val(data);
+                    $('#count').val('1');
                 });
             });
 
