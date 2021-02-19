@@ -11,6 +11,5 @@ import java.util.List;
 @Repository
 public interface ProductInOrderRepositorie extends CrudRepository<ProductInOrder, Long> {
     List<ProductInOrder> findByOrder(Order order);
-
     List<ProductInOrder> findByProduct(Product product);
 }

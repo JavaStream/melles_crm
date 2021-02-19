@@ -20,4 +20,14 @@ public class ProductInOrderService {
         List<ProductInOrder> products = productInOrderRepositorie.findByProduct(product);
         return products;
     }
+
+    public ProductInOrder findById(String id) {
+        Long productId = Long.parseLong(id);
+        return productInOrderRepositorie.findById(productId)
+                .orElseThrow(IllegalStateException::new);
+    }
+
+    public void save(ProductInOrder productInOrder) {
+        productInOrderRepositorie.save(productInOrder);
+    }
 }

@@ -18,14 +18,16 @@ public class OrderController {
     private SettingService settingService;
     private CategoryService categoryService;
     private ProductService productService;
+    private ProductInOrderService productInOrderService;
 
     public OrderController(OrderService orderService, UserService userService, SettingService settingService,
-                           CategoryService categoryService, ProductService productService) {
+                           CategoryService categoryService, ProductService productService, ProductInOrderService productInOrderService) {
         this.orderService = orderService;
         this.userService = userService;
         this.settingService = settingService;
         this.categoryService = categoryService;
         this.productService = productService;
+        this.productInOrderService = productInOrderService;
     }
 
     @GetMapping
@@ -108,9 +110,9 @@ public class OrderController {
         return "redirect:/orders/"+orderId;
     }
 
-    @PostMapping("/{id}/add")
+    @PostMapping("/{orderId}/add")
     public String addProductInOrder(@ModelAttribute("product") ProductInOrder productInOrder,
-                                    @PathVariable("id") String orderId,
+                                    @PathVariable("orderId") String orderId,
                                     @RequestParam String category,
                                     @RequestParam String color,
                                     @RequestParam String productId) {
@@ -134,5 +136,44 @@ public class OrderController {
         orderService.saveProductInOrder(productInOrder);
 
         return "redirect:/orders/"+orderId;
+    }
+
+    @GetMapping("/{orderId}/edit/{productId}")
+    public String editProductInOrder(@PathVariable("orderId") String orderId,
+                                     @PathVariable("productId") String productId, Model model) {
+
+        List<Category> categories = categoryService.findAll();
+
+        Order order = orderService.findById(orderId);
+        List<OrderStatus> orderStatuses = settingService.findOrderStatuses();
+
+        ProductInOrder productInOrder = productInOrderService.findById(productId);
+        List<Color> colors = productInOrder.getProduct().getColor().getCategory().getColors();
+        List<Product> products = productInOrder.getProduct().getColor().getProducts();
+
+        model.addAttribute("order", order);
+        model.addAttribute("product", productInOrder);
+        model.addAttribute("categories", categories);
+        model.addAttribute("colors", colors);
+        model.addAttribute("products", products);
+        model.addAttribute("orderStatuses", orderStatuses);
+        model.addAttribute("users", userService.findAll());
+
+        return "orders/order/orderEdit";
+    }
+
+    @PostMapping("/{orderId}/product/{productId}/update")
+    public String updateProductInOrder(@ModelAttribute("product") ProductInOrder productInOrder,
+                                       @PathVariable("orderId") String orderId,
+                                       @RequestParam("productId") String productId) {
+        Order order = orderService.findById(orderId);
+        Product product = productService.findById(productId);
+
+        productInOrder.setProduct(product);
+        productInOrder.setOrder(order);
+
+        productInOrderService.save(productInOrder);
+
+        return "redirect:/orders";
     }
 }

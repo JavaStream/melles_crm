@@ -3,8 +3,10 @@ package com.javastream.melles_crm.controller;
 import com.javastream.melles_crm.model.Category;
 import com.javastream.melles_crm.model.Color;
 import com.javastream.melles_crm.model.Product;
+import com.javastream.melles_crm.model.ProductInOrder;
 import com.javastream.melles_crm.service.CategoryService;
 import com.javastream.melles_crm.service.ColorService;
+import com.javastream.melles_crm.service.ProductInOrderService;
 import com.javastream.melles_crm.service.ProductService;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
@@ -24,24 +26,14 @@ public class UtilController {
     private CategoryService categoryService;
     private ColorService colorService;
     private ProductService productService;
+    private ProductInOrderService productInOrderService;
 
-    public UtilController(CategoryService categoryService, ColorService colorService, ProductService productService) {
+    public UtilController(CategoryService categoryService, ColorService colorService, ProductService productService, ProductInOrderService productInOrderService) {
         this.categoryService = categoryService;
         this.colorService = colorService;
         this.productService = productService;
+        this.productInOrderService = productInOrderService;
     }
-
-    /*@RequestMapping(value = "/colors")
-    public Set getColors(@RequestParam String category) {
-        Category cat = categoryService.findById(category);
-        List<Color> colors = colorService.findAllByCategory(cat);
-        Set<String> set = new HashSet<>();
-        for (Color color : colors) {
-            set.add(color.getName());
-        }
-
-        return set;
-    }*/
 
     @RequestMapping(value = "/colors")
     public String getColors(@RequestParam String categoryId) {
