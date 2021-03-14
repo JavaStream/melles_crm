@@ -24,6 +24,6 @@ public class Category {
 
     private String description;
 
-    @OneToMany(mappedBy = "category", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "category", fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<Color> colors;
 }

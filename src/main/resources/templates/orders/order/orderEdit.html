@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="parts/header :: header('Статусы заказов - Настройка')"></head>
+
+
+<body>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Главная </a></li>
+        <li class="breadcrumb-item"><a href="/orders">Заказы </a></li>
+        <li class="breadcrumb-item"><a th:href="@{/orders/{id}(id=${order.id})}" th:utext="${order.number}"></a></li>
+        <li class="breadcrumb-item active" aria-current="page">Редактирование</li>
+    </ol>
+</nav>
+
+<span th:id="category_id" hidden="hidden" th:utext="${product.getProduct().getColor().getCategory().getId()}"></span>
+<span th:id="color_id" hidden="hidden" th:utext="${product.getProduct().getColor().getId()}"></span>
+<span th:id="product_id" hidden="hidden" th:utext="${product.getProduct().getId()}"></span>
+
+<div class="container base">
+    <div class="row">
+
+        <form class="col-md-7"
+              th:action="@{/orders/{id}/product/{productId}/update(id=${order.id}, productId=${product.id})}"
+              th:object="${product}" th:method="POST">
+
+            <div class="form-group">
+                <input name="id" id="ids" type="text" class="form-control" th:field="*{id}" hidden="hidden">
+            </div>
+
+            <div class="form-group">
+                <label for="category">Категория</label>
+                <select name="category" id="category" class="form-control selectpicker category">
+                    <option value="0" selected="selected" disabled>--Выберите категорию--</option>
+                    <option th:each="category : ${categories}" th:value="${category.id}"
+                            th:text="${category.name}"></option>
+                </select>
+            </div>
+
+            <div class="color form-group">
+                <label for="color">Цвет</label>
+                <select name="color" id="color" class="form-control selectpicker color">
+                    <option value="0" selected="selected">--Выберите цвет--</option>
+                    <option th:each="color : ${colors}" th:value="${color.id}"
+                            th:text="${color.name}"></option>
+                </select>
+            </div>
+
+            <div class="models form-group">
+                <label for="product">Товар</label>
+                <select name="productId" id="product" class="form-control selectpicker product">
+                    <option value="0" selected="selected">--Выберите товар--</option>
+                    <option th:each="prod : ${products}" th:value="${prod.id}"
+                            th:text="Арт. + ${prod.articul} + ' | размер - ' + ${prod.size}"></option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="count">Количество</label>
+                <input name="count" id="count" type="text" th:field="*{count}"
+                       class="form-control input-lg" placeholder="Кол-во">
+            </div>
+
+            <div class="form-group">
+                <label for="price">Цена</label>
+                <input name="price" id="price" type="text" th:field="*{price}"
+                       class="form-control input-lg" placeholder="Цена">
+            </div>
+
+            <div>
+                <input type="submit" value="Сохранить" class="btn btn-success">
+                <a th:href="@{/orders/{id}(id=${order.id})}" th:utext="Назад" class="btn btn-link"></a>
+            </div>
+        </form>
+    </div>
+
+</div>
+</div>
+
+<div th:replace="parts/footer :: bootstrap_script"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        setupDefaultSelectForCategoryField();
+        setupDefaultSelectForColorField();
+        setupDefaultSelectForProductField();
+
+        $("#category").change(function () {
+            $("#color").removeAttr('disabled');
+            reloadColorPicker();
+        });
+
+        $("#color").change(function () {
+            $("#product").removeAttr('disabled');
+            reloadProductPicker();
+        });
+
+        $("#product").change(function () {
+            var productId = this.value;
+            $.get("/util/product?productId=" + productId, function (data) {
+                $('#price').val(data);
+                $('#count').val('1');
+            });
+        });
+    });
+
+    function setupDefaultSelectForCategoryField() {
+        var categoryId = $("#category_id").text();
+        $('#category option[value=' + categoryId + ']').prop('selected', true);
+    }
+
+    function setupDefaultSelectForColorField() {
+        var colorId = $("#color_id").text();
+        $('#color option[value=' + colorId + ']').prop('selected', true);
+    }
+
+    function setupDefaultSelectForProductField() {
+        var productId = $("#product_id").text();
+        $('#product option[value=' + productId + ']').prop('selected', true);
+    }
+
+
+    function reloadColorPicker() {
+        var category = $("#category").val();
+
+        $.get("/util/colors?categoryId=" + category, function (data) {
+            var colors = JSON.parse(data);
+            alert(colors);
+
+            $("#color").empty();
+
+            var option = "<option value='0'>--Выберите цвет--</option>";
+            $("#color").append(option);
+
+            for (var id in colors) {
+                option = "<option value = " + id + ">" + colors[id] + "</option>";
+                $("#color").append(option);
+            }
+        });
+    };
+
+
+    function reloadProductPicker() {
+        var color = $("#color").val();
+
+        $.get("/util/products?colorId=" + color, function (data) {
+            var products = JSON.parse(data);
+
+            $("#product").empty();
+
+            var option = "<option value='0' selected='selected' disabled>--Выберите товар--</option>";
+            $("#product").append(option);
+
+            for (var id in products) {
+                option = "<option value = " + id + ">" + products[id] + "</option>";
+                $("#product").append(option);
+            }
+        });
+    };
+</script>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script type="text/javascript" th:inline="javascript" th:src="@{/js/serch_clients_in_inputfield.js}"></script>
+</body>
+</html>

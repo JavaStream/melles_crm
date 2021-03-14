@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="parts/header :: header('Склад - Товары')"></head>
+
+<body>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Главная </a></li>
+        <li class="breadcrumb-item"><a href="/store">Склад </a></li>
+        <li class="breadcrumb-item"><a th:href="@{/store/category/{categoryId}(categoryId=${categoryId})}">Расцветки </a></li>
+        <li class="breadcrumb-item active" aria-current="page">Товары</li>
+    </ol>
+</nav>
+
+<div class="container base">
+    <div class="row">
+        <table class="table table-hover">
+
+            <thead class="thead">
+            <tr>
+                <th scope="col">ТОВАР</th>
+                <th scope="col">АРТИКУЛ</th>
+                <th scope="col">РЕЗЕРВ</th>
+                <th scope="col">ОСТАТОК</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="statistic : ${statistics}">
+                <td th:utext="${statistic.getProduct().getName()}"></td>
+                <td th:utext="${statistic.getProduct().getArticul()}"></td>
+                <td th:utext="${statistic.getReserve}"></td>
+                <td th:utext="${statistic.getPlannedBalance}"></td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+</div>
+
+<div th:replace="parts/footer :: bootstrap_script"></div>
+</body>
+</html>

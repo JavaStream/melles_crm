@@ -27,8 +27,7 @@ public class ColorService {
     }
 
     public Color findById(String id) {
-        return colorRepositorie.findById(Long.parseLong(id))
-                .orElseThrow(IllegalStateException::new);
+        return colorRepositorie.findById(Long.parseLong(id)).get();
     }
 
     public void save(Color color) {
