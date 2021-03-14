@@ -9,8 +9,11 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Главная</a></li>
         <li class="breadcrumb-item"><a href="/category">Категории</a></li>
-        <li class="breadcrumb-item"><a th:href="@{/category/{categoryId}/color(categoryId=${category.id})}">Расцветки </a></li>
-        <li class="breadcrumb-item"><a th:href="@{/category/{categoryId}/color/{colorId}/product(categoryId=${category.id}, colorId=${color.id})}">Товары </a></li>
+        <li class="breadcrumb-item"><a
+                th:href="@{/category/{categoryId}/color(categoryId=${category.id})}">Расцветки </a></li>
+        <li class="breadcrumb-item"><a
+                th:href="@{/category/{categoryId}/color/{colorId}/product(categoryId=${category.id}, colorId=${color.id})}">Товары </a>
+        </li>
         <li class="breadcrumb-item active" aria-current="page">Редактирование</li>
     </ol>
 </nav>
@@ -18,7 +21,9 @@
 <div class="container base">
     <div class="row">
 
-        <form class="col s12" th:action="@{/category/{categoryId}/color/{colorId}/product/edit/{productId}(categoryId=${category.id}, colorId=${color.id}, productId=${product.id})}" th:object="${product}" th:method="POST">
+        <form class="col s12"
+              th:action="@{/category/{categoryId}/color/{colorId}/product/edit/{productId}(categoryId=${category.id}, colorId=${color.id}, productId=${product.id})}"
+              th:object="${product}" th:method="POST" enctype="multipart/form-data">
 
             <div class="row">
                 <div class="form-group">
@@ -58,7 +63,22 @@
             <div class="row">
                 <div class="form-group">
                     <label for="incomingBalance">Начальный остаток</label>
-                    <input name="incomingBalance" id="incomingBalance" type="text" class="form-control" th:field="*{incomingBalance}">
+                    <input name="incomingBalance" id="incomingBalance" type="text" class="form-control"
+                           th:field="*{incomingBalance}">
+                </div>
+            </div>
+
+            <div class="row">
+                <img th:src="@{/endpoint/image/{id}(id=${product.id})}" style="width: 50px"/>
+                <div class="form-group">
+
+                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                        <div class="input-append">
+                            <div class="uneditable-input span3"><i class="icon-file fileupload-exists"></i>
+                                <span class="fileupload-preview"></span></div>
+                            <span class="btn btn-file"><input type="file" name="fileToUpload" id="fileToUpload"/></span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -71,7 +91,8 @@
             <div class="row">
                 <div>
                     <input type="submit" value="Сохранить" class="btn btn-success">
-                    <a th:href="@{/category/{categoryId}/color/{colorId}/product(categoryId=${category.id}, colorId=${color.id})}" th:utext="Назад" class="btn btn-link"></a>
+                    <a th:href="@{/category/{categoryId}/color/{colorId}/product(categoryId=${category.id}, colorId=${color.id})}"
+                       th:utext="Назад" class="btn btn-link"></a>
                 </div>
             </div>
 

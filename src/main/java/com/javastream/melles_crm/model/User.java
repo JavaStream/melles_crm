@@ -34,7 +34,7 @@ public class User {
     private String website;
     private String note;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private List<Order> orders;
 
     @ElementCollection

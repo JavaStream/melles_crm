@@ -2,6 +2,8 @@ package com.javastream.melles_crm.service;
 
 import com.javastream.melles_crm.model.Color;
 import com.javastream.melles_crm.model.Product;
+import com.javastream.melles_crm.model.ProductPhoto;
+import com.javastream.melles_crm.repo.ProductPhotoRepositorie;
 import com.javastream.melles_crm.repo.ProductRepositorie;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +15,11 @@ import java.util.stream.Collectors;
 public class ProductService {
 
     private ProductRepositorie productRepositorie;
+    private ProductPhotoRepositorie productPhotoRepositorie;
 
-    public ProductService(ProductRepositorie productRepositorie) {
+    public ProductService(ProductRepositorie productRepositorie, ProductPhotoRepositorie productPhotoRepositorie) {
         this.productRepositorie = productRepositorie;
+        this.productPhotoRepositorie = productPhotoRepositorie;
     }
 
     public List<Product> findAllByColor(Color color) {
@@ -37,5 +41,7 @@ public class ProductService {
     }
 
 
-
+    public void saveProductPhoto(ProductPhoto photo) {
+        productPhotoRepositorie.save(photo);
+    }
 }

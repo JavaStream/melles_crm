@@ -40,6 +40,10 @@ public class Product {
     @JoinColumn(name = "color_id")
     private Color color;
 
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="photo_id", referencedColumnName = "id")
+    private ProductPhoto photo;
+
 
     @OneToMany(mappedBy = "product")
     private List<ProductArrival> productArrival;
