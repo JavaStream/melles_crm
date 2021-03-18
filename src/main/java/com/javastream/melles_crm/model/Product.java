@@ -33,6 +33,8 @@ public class Product {
     @Column(nullable = false)
     private BigDecimal price;
 
+    private boolean isVisible;
+
     @Column(nullable = false)
     private Long incomingBalance;
 

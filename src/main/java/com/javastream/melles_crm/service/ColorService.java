@@ -26,15 +26,24 @@ public class ColorService {
         return sortedColors;
     }
 
+    public List<Color> findAllVisible(Category category) {
+        List<Color> colors = colorRepositorie.findByCategory(category);
+        List<Color> sortedColors = colors.stream().filter(color -> color.isVisible()).sorted(Comparator.comparing(Color::getId)).collect(Collectors.toList());
+        return sortedColors;
+    }
+
     public Color findById(String id) {
         return colorRepositorie.findById(Long.parseLong(id)).get();
     }
 
     public void save(Color color) {
+        color.setVisible(true);
         colorRepositorie.save(color);
     }
 
-    public void deleteById(Long id) {
-        colorRepositorie.deleteById(id);
+    public void disableById(String id) {
+        Color color = findById(id);
+        color.setVisible(false);
+        colorRepositorie.save(color);
     }
 }

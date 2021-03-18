@@ -30,16 +30,15 @@ public class CategoryController {
 
     @GetMapping
     public String selectCategories(Model model) {
-        List<Category> categories = categoryService.findAll();
+        List<Category> categories = categoryService.findAllVisible();
 
         model.addAttribute("categories", categories);
         model.addAttribute("newCategory", new Category());
-        return "category";
+        return "stock/category";
     }
 
     @PostMapping("/add")
     public String createCategory(@ModelAttribute("category") Category category) {
-
         categoryService.save(category);
 
         return "redirect:/category";
@@ -51,7 +50,7 @@ public class CategoryController {
 
         model.addAttribute("category", category);
 
-        return "categoryEdit";
+        return "stock/categoryEdit";
     }
 
     @PostMapping("/udate")
@@ -62,8 +61,8 @@ public class CategoryController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteCategory(@PathVariable("id") Long id) {
-        categoryService.deleteById(id);
+    public String disableCategory(@PathVariable("id") String id) {
+        categoryService.disableById(id);
 
         return "redirect:/category";
     }

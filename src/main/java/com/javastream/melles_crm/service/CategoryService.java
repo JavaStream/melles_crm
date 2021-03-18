@@ -19,7 +19,16 @@ public class CategoryService {
 
     public List<Category> findAll() {
         List<Category> categories = categoryRepositorie.findAll();
-        List<Category> sortedCategories = categories.stream().sorted(Comparator.comparing(Category::getId)).collect(Collectors.toList());
+        List<Category> sortedCategories = categories.stream()
+                .sorted(Comparator.comparing(Category::getId)).collect(Collectors.toList());
+        return sortedCategories;
+    }
+
+    public List<Category> findAllVisible() {
+        List<Category> categories = categoryRepositorie.findAll();
+        List<Category> sortedCategories = categories.stream()
+                .filter(cat -> cat.isVisible())
+                .sorted(Comparator.comparing(Category::getId)).collect(Collectors.toList());
         return sortedCategories;
     }
 
@@ -28,11 +37,14 @@ public class CategoryService {
     }
 
     public void save(Category category) {
+        category.setVisible(true);
         categoryRepositorie.save(category);
     }
 
-    public void deleteById(Long id) {
-        categoryRepositorie.deleteById(id);
+    public void disableById(String id) {
+        Category category = findById(id);
+        category.setVisible(false);
+        categoryRepositorie.save(category);
     }
 
 }

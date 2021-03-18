@@ -9,7 +9,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Главная </a></li>
-        <li class="breadcrumb-item"><a href="/store">Склад </a></li>
+        <li class="breadcrumb-item"><a href="/remaining">Остатки продукции </a></li>
         <li class="breadcrumb-item active" aria-current="page">Расцветки</li>
     </ol>
 </nav>
@@ -26,7 +26,7 @@
 
             <tbody>
             <tr th:each="color : ${colors}">
-                <td><a th:href="@{/store/category/{categoryId}/color/{colorId}(categoryId=${category.id}, colorId=${color.id})}" th:utext="${color.name}"></a></td>
+                <td><a th:href="@{/remaining/category/{categoryId}/color/{colorId}(categoryId=${category.id}, colorId=${color.id})}" th:utext="${color.name}"></a></td>
             </tr>
             </tbody>
 

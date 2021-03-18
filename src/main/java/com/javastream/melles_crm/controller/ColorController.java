@@ -30,12 +30,12 @@ public class ColorController {
     @GetMapping("/color")
     public String selectColor(@PathVariable("category") String categoryId, Model model) {
         Category category = categoryService.findById(categoryId);
-        List<Color> colors = colorService.findAllByCategory(category);
+        List<Color> colors = colorService.findAllVisible(category);
 
         model.addAttribute("colors", colors);
         model.addAttribute("category", category);
         model.addAttribute("newColor", new Color());
-        return "color";
+        return "stock/color";
     }
 
     @PostMapping("/color/add")
@@ -53,7 +53,7 @@ public class ColorController {
         model.addAttribute("color", color);
         model.addAttribute("category", category);
 
-        return "colorEdit";
+        return "stock/colorEdit";
     }
 
     @PostMapping("/color/edit/{id}")
@@ -65,9 +65,9 @@ public class ColorController {
 
     @GetMapping("/color/delete/{id}")
     public String deleteColor(@PathVariable("category") String categoryId,
-                              @PathVariable("id") Long colorId) {
+                              @PathVariable("id") String colorId) {
 
-        colorService.deleteById(colorId);
+        colorService.disableById(colorId);
 
         return "redirect:/category/" + categoryId + "/color";
     }

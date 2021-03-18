@@ -47,16 +47,16 @@ public class ProductController {
         Color color = colorService.findById(colorId);
         Category category = color.getCategory();
 
+        List<Product> products = productService.findAllVisible(color);
+
         Product product = new Product();
         product.setColor(color);
-
-        List<Product> products = productService.findAllByColor(color);
 
         model.addAttribute("products", products);
         model.addAttribute("color", color);
         model.addAttribute("category", category);
         model.addAttribute("newProduct", product);
-        return "product";
+        return "stock/product";
     }
 
     @PostMapping("/product/add")
@@ -92,7 +92,7 @@ public class ProductController {
         model.addAttribute("color", color);
         model.addAttribute("product", product);
 
-        return "productEdit";
+        return "stock/productEdit";
     }
 
     @PostMapping("/product/edit/{id}")
@@ -127,7 +127,7 @@ public class ProductController {
                                 @PathVariable("id") String productId
     ) {
 
-        productService.deleteById(productId);
+        productService.disableById(productId);
 
         return "redirect:/category/" + categoryId + "/color/" + colorId + "/product";
     }

@@ -14,8 +14,8 @@ import java.util.Comparator;
 import java.util.List;
 
 @Controller
-@RequestMapping("/store")
-public class StoreController {
+@RequestMapping("/remaining")
+public class RemainingController {
 
     private ColorService colorService;
     private CategoryService categoryService;
@@ -25,9 +25,9 @@ public class StoreController {
     private SettingService settingService;
     private ProductInOrderService productInOrderService;
 
-    public StoreController(ColorService colorService, CategoryService categoryService,
-                           ProductService productService, OrderService orderService, SettingService settingService,
-                           ProductArrivalService productArrivalService, ProductInOrderService productInOrderService) {
+    public RemainingController(ColorService colorService, CategoryService categoryService,
+                               ProductService productService, OrderService orderService, SettingService settingService,
+                               ProductArrivalService productArrivalService, ProductInOrderService productInOrderService) {
         this.colorService = colorService;
         this.categoryService = categoryService;
         this.productService = productService;
@@ -42,7 +42,7 @@ public class StoreController {
         List<Category> categories = categoryService.findAll();
 
         model.addAttribute("categories", categories);
-        return "store/categories";
+        return "remaining/categories";
     }
 
     @GetMapping("/category/{categoryId}")
@@ -52,7 +52,7 @@ public class StoreController {
 
         model.addAttribute("colors", colors);
         model.addAttribute("category", category);
-        return "store/colors";
+        return "remaining/colors";
     }
 
     @GetMapping("/category/{categoryId}/color/{colorId}")
@@ -104,6 +104,6 @@ public class StoreController {
         model.addAttribute("statistics", statistics);
         model.addAttribute("category", categoryId);
         model.addAttribute("color", colorId);
-        return "store/products";
+        return "remaining/products";
     }
 }

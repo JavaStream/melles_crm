@@ -38,7 +38,7 @@ public class UtilController {
     @RequestMapping(value = "/colors")
     public String getColors(@RequestParam String categoryId) {
         Category category = categoryService.findById(categoryId);
-        List<Color> colors = colorService.findAllByCategory(category);
+        List<Color> colors = colorService.findAllVisible(category);
         Map<Long, String> map = new HashMap<>();
         for (Color color : colors) {
             map.put(color.getId(), "Цвет - " + color.getName());
@@ -52,7 +52,7 @@ public class UtilController {
     public String getProducts(@RequestParam String colorId) {
         Color color = colorService.findById(colorId);
 
-        List<Product> products = productService.findAllByColor(color);
+        List<Product> products = productService.findAllVisible(color);
 
         Map<Long, String> map = new HashMap<>();
         for (Product product : products) {

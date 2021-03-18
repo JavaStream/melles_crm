@@ -49,8 +49,7 @@ public class OrderService {
     }
 
     public List<ProductInOrder> findProductsInOrder(Order order) {
-        List<ProductInOrder> products = productInOrderRepositorie.findByOrder(order);
-        return products;
+        return productInOrderRepositorie.findByOrder(order);
     }
 
     public void saveProductInOrder(ProductInOrder productInOrder) {
