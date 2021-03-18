@@ -9,5 +9,4 @@ public class MellesCrmApplication {
     public static void main(String[] args) {
         SpringApplication.run(MellesCrmApplication.class, args);
     }
-
 }
