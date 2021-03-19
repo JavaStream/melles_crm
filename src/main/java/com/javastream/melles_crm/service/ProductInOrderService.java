@@ -2,7 +2,7 @@ package com.javastream.melles_crm.service;
 
 import com.javastream.melles_crm.model.Product;
 import com.javastream.melles_crm.model.ProductInOrder;
-import com.javastream.melles_crm.repo.ProductInOrderRepositorie;
+import com.javastream.melles_crm.repo.ProductInOrderRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,24 +10,24 @@ import java.util.List;
 @Service
 public class ProductInOrderService {
 
-    private ProductInOrderRepositorie productInOrderRepositorie;
+    private ProductInOrderRepository productInOrderRepository;
 
-    public ProductInOrderService(ProductInOrderRepositorie productInOrderRepositorie) {
-        this.productInOrderRepositorie = productInOrderRepositorie;
+    public ProductInOrderService(ProductInOrderRepository productInOrderRepository) {
+        this.productInOrderRepository = productInOrderRepository;
     }
 
     public List<ProductInOrder> findAllByProduct(Product product) {
-        List<ProductInOrder> products = productInOrderRepositorie.findByProduct(product);
+        List<ProductInOrder> products = productInOrderRepository.findByProduct(product);
         return products;
     }
 
     public ProductInOrder findById(String id) {
         Long productId = Long.parseLong(id);
-        return productInOrderRepositorie.findById(productId)
+        return productInOrderRepository.findById(productId)
                 .orElseThrow(IllegalStateException::new);
     }
 
     public void save(ProductInOrder productInOrder) {
-        productInOrderRepositorie.save(productInOrder);
+        productInOrderRepository.save(productInOrder);
     }
 }

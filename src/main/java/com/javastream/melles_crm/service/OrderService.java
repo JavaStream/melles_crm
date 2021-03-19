@@ -3,8 +3,8 @@ package com.javastream.melles_crm.service;
 import com.javastream.melles_crm.model.Order;
 import com.javastream.melles_crm.model.OrderStatus;
 import com.javastream.melles_crm.model.ProductInOrder;
-import com.javastream.melles_crm.repo.OrderRepositorie;
-import com.javastream.melles_crm.repo.ProductInOrderRepositorie;
+import com.javastream.melles_crm.repo.OrderRepository;
+import com.javastream.melles_crm.repo.ProductInOrderRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -14,56 +14,55 @@ import java.util.stream.Collectors;
 @Service
 public class OrderService {
 
-    private OrderRepositorie orderRepositorie;
-    private ProductInOrderRepositorie productInOrderRepositorie;
+    private OrderRepository orderRepository;
+    private ProductInOrderRepository productInOrderRepository;
 
 
-    public OrderService(OrderRepositorie orderRepositorie, ProductInOrderRepositorie productInOrderRepositorie) {
-        this.orderRepositorie = orderRepositorie;
-        this.productInOrderRepositorie = productInOrderRepositorie;
+    public OrderService(OrderRepository orderRepository, ProductInOrderRepository productInOrderRepository) {
+        this.orderRepository = orderRepository;
+        this.productInOrderRepository = productInOrderRepository;
     }
 
     public List<Order> findAll() {
-        List<Order> orders = orderRepositorie.findAll();
+        List<Order> orders = orderRepository.findAll();
         List<Order> sortedOrders = orders.stream().sorted(Comparator.comparing(Order::getDate).thenComparing(Order::getNumber)).collect(Collectors.toList());
         return sortedOrders;
     }
 
     public Order findById(String id) {
-        return orderRepositorie.findById(Long.parseLong(id)).orElseThrow(IllegalStateException::new);
+        return orderRepository.findById(Long.parseLong(id)).orElseThrow(IllegalStateException::new);
     }
 
     public void save(Order order) {
-        orderRepositorie.save(order);
+        orderRepository.save(order);
     }
 
     public void deleteById(String id) {
         long orderId = Long.parseLong(id);
-        orderRepositorie.deleteById(orderId);
+        orderRepository.deleteById(orderId);
     }
 
     public List<Order> findByOrderStatus(OrderStatus orderStatus) {
-        List<Order> orders = orderRepositorie.findByStatus(orderStatus);
+        List<Order> orders = orderRepository.findByStatus(orderStatus);
 
         return orders;
     }
 
     public List<ProductInOrder> findProductsInOrder(Order order) {
-        List<ProductInOrder> products = productInOrderRepositorie.findByOrder(order);
-        return products;
+        return productInOrderRepository.findByOrder(order);
     }
 
     public void saveProductInOrder(ProductInOrder productInOrder) {
-        productInOrderRepositorie.save(productInOrder);
+        productInOrderRepository.save(productInOrder);
     }
 
     public void deleteProductInOrder(String productInOrderId) {
         long id = Long.parseLong(productInOrderId);
-        productInOrderRepositorie.deleteById(id);
+        productInOrderRepository.deleteById(id);
     }
 
     public List<Order> findActiveOrders(OrderStatus orderStatus) {
-        List<Order> orders = orderRepositorie.findByStatusNot(orderStatus);
+        List<Order> orders = orderRepository.findByStatusNot(orderStatus);
 
         return orders;
     }

@@ -1,18 +1,12 @@
 package com.javastream.melles_crm.controller;
 
 import com.javastream.melles_crm.model.Category;
-import com.javastream.melles_crm.model.Color;
-import com.javastream.melles_crm.repo.CategoryRepositorie;
 import com.javastream.melles_crm.service.CategoryService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /*
     Категории сортируются по id
@@ -30,16 +24,15 @@ public class CategoryController {
 
     @GetMapping
     public String selectCategories(Model model) {
-        List<Category> categories = categoryService.findAll();
+        List<Category> categories = categoryService.findAllVisible();
 
         model.addAttribute("categories", categories);
         model.addAttribute("newCategory", new Category());
-        return "category";
+        return "stock/category";
     }
 
     @PostMapping("/add")
     public String createCategory(@ModelAttribute("category") Category category) {
-
         categoryService.save(category);
 
         return "redirect:/category";
@@ -51,10 +44,10 @@ public class CategoryController {
 
         model.addAttribute("category", category);
 
-        return "categoryEdit";
+        return "stock/categoryEdit";
     }
 
-    @PostMapping("/udate")
+    @PostMapping("/update")
     public String updateCategory(Category category) {
         categoryService.save(category);
 
@@ -62,8 +55,8 @@ public class CategoryController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteCategory(@PathVariable("id") Long id) {
-        categoryService.deleteById(id);
+    public String disableCategory(@PathVariable("id") String id) {
+        categoryService.disableById(id);
 
         return "redirect:/category";
     }

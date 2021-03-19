@@ -6,8 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/orders")
@@ -69,21 +71,21 @@ public class OrderController {
 
     @PostMapping("/update")
     public String updateOrder(@ModelAttribute("order") Order order) {
-       orderService.save(order);
+        orderService.save(order);
 
         return "redirect:/orders";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteOrder(@PathVariable("id") String id) {
-       orderService.deleteById(id);
+        orderService.deleteById(id);
 
-       return "redirect:/orders";
+        return "redirect:/orders";
     }
 
 
     /*
-        ORDER ENRIES
+        ORDER'S ENTRIES
      */
 
     @GetMapping("/{orderId}")
@@ -91,8 +93,14 @@ public class OrderController {
         Order order = orderService.findById(orderId);
         List<ProductInOrder> productsInOrder = orderService.findProductsInOrder(order);
 
-        List<Category> categories = categoryService.findAll();
+        List<Category> categories = categoryService.findAllVisible();
 
+        // Total
+        BigDecimal total = productsInOrder.stream()
+                .map(product -> BigDecimal.valueOf(product.getCount()).multiply(product.getPrice()))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        model.addAttribute("total", total);
         model.addAttribute("order", order);
         model.addAttribute("categories", categories);
         model.addAttribute("products", productsInOrder);
@@ -107,7 +115,7 @@ public class OrderController {
 
         orderService.deleteProductInOrder(productId);
 
-        return "redirect:/orders/"+orderId;
+        return "redirect:/orders/" + orderId;
     }
 
     @PostMapping("/{orderId}/add")
@@ -135,7 +143,7 @@ public class OrderController {
 
         orderService.saveProductInOrder(productInOrder);
 
-        return "redirect:/orders/"+orderId;
+        return "redirect:/orders/" + orderId;
     }
 
     @GetMapping("/{orderId}/edit/{productId}")
@@ -149,7 +157,9 @@ public class OrderController {
 
         ProductInOrder productInOrder = productInOrderService.findById(productId);
         List<Color> colors = productInOrder.getProduct().getColor().getCategory().getColors();
+
         List<Product> products = productInOrder.getProduct().getColor().getProducts();
+        products = products.stream().filter(Product::isVisible).collect(Collectors.toList());
 
         model.addAttribute("order", order);
         model.addAttribute("product", productInOrder);
@@ -174,6 +184,6 @@ public class OrderController {
 
         productInOrderService.save(productInOrder);
 
-        return "redirect:/orders";
+        return "redirect:/orders/" + orderId;
     }
 }

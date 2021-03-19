@@ -2,9 +2,8 @@ package com.javastream.melles_crm.service;
 
 import com.javastream.melles_crm.model.Color;
 import com.javastream.melles_crm.model.Product;
-import com.javastream.melles_crm.model.ProductPhoto;
-import com.javastream.melles_crm.repo.ProductPhotoRepositorie;
-import com.javastream.melles_crm.repo.ProductRepositorie;
+import com.javastream.melles_crm.repo.ProductPhotoRepository;
+import com.javastream.melles_crm.repo.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -14,34 +13,39 @@ import java.util.stream.Collectors;
 @Service
 public class ProductService {
 
-    private ProductRepositorie productRepositorie;
-    private ProductPhotoRepositorie productPhotoRepositorie;
+    private ProductRepository productRepository;
+    private ProductPhotoRepository productPhotoRepository;
 
-    public ProductService(ProductRepositorie productRepositorie, ProductPhotoRepositorie productPhotoRepositorie) {
-        this.productRepositorie = productRepositorie;
-        this.productPhotoRepositorie = productPhotoRepositorie;
+    public ProductService(ProductRepository productRepository, ProductPhotoRepository productPhotoRepository) {
+        this.productRepository = productRepository;
+        this.productPhotoRepository = productPhotoRepository;
     }
 
     public List<Product> findAllByColor(Color color) {
-        List<Product> products = productRepositorie.findByColor(color);
-        List<Product> sortedProducts = products.stream().sorted(Comparator.comparing(Product::getId)).collect(Collectors.toList());
+        List<Product> products = productRepository.findByColor(color);
+        return products.stream()
+                .filter(Product::isVisible)
+                .sorted(Comparator.comparing(Product::getId)).collect(Collectors.toList());
+    }
+
+    public List<Product> findAllVisible(Color color) {
+        List<Product> products = productRepository.findByColor(color);
+        List<Product> sortedProducts = products.stream().filter(product -> product.isVisible()).sorted(Comparator.comparing(Product::getId)).collect(Collectors.toList());
         return sortedProducts;
     }
 
     public Product findById(String id) {
-        return productRepositorie.findById(Long.parseLong(id)).orElseThrow(IllegalStateException::new);
+        return productRepository.findById(Long.parseLong(id)).orElseThrow(IllegalStateException::new);
     }
 
     public void save(Product product) {
-        productRepositorie.save(product);
+        product.setVisible(true);
+        productRepository.save(product);
     }
 
-    public void deleteById(String id) {
-        productRepositorie.deleteById(Long.parseLong(id));
-    }
-
-
-    public void saveProductPhoto(ProductPhoto photo) {
-        productPhotoRepositorie.save(photo);
+    public void disableById(String id) {
+        Product product = findById(id);
+        product.setVisible(false);
+        productRepository.save(product);
     }
 }

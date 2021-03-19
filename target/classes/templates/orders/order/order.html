@@ -17,7 +17,7 @@
 <div class="container base">
 
     <div class="row"><h4 th:utext="${order.getUser().getName()}"></h4></div>
-    <div class="row"><h6 th:utext="'Заказ ' + ${order.getNumber()} + '.'"></h6></div>
+    <div class="row"><h6 th:utext="'Заказ ' + ${order.getNumber()} + '. Cумма: ' + ${total} + ' руб.'"></h6></div>
 
 
     <div class="row">

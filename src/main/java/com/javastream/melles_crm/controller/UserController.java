@@ -1,17 +1,13 @@
 package com.javastream.melles_crm.controller;
 
-import com.javastream.melles_crm.model.Category;
 import com.javastream.melles_crm.model.User;
 import com.javastream.melles_crm.model.UserType;
-import com.javastream.melles_crm.repo.UserRepositorie;
 import com.javastream.melles_crm.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/clients")

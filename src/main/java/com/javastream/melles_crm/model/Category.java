@@ -24,6 +24,8 @@ public class Category {
 
     private String description;
 
+    private boolean isVisible;
+
     @OneToMany(mappedBy = "category", fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<Color> colors;
 }

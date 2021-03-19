@@ -2,7 +2,7 @@ package com.javastream.melles_crm.controller;
 
 import com.javastream.melles_crm.model.Product;
 import com.javastream.melles_crm.model.ProductPhoto;
-import com.javastream.melles_crm.repo.ProductPhotoRepositorie;
+import com.javastream.melles_crm.repo.ProductPhotoRepository;
 import com.javastream.melles_crm.service.ProductService;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ import java.io.InputStream;
 public class FileController {
 
     @Autowired
-    private ProductPhotoRepositorie productPhotoRepositorie;
+    private ProductPhotoRepository productPhotoRepository;
 
     @Autowired
     private ProductService productService;
@@ -45,5 +45,4 @@ public class FileController {
         InputStream in = new FileInputStream(file);
         return IOUtils.toByteArray(in);
     }
-
 }
