@@ -34,8 +34,8 @@
             <tbody>
             <tr th:each="order : ${orders}">
                 <td><a th:href="@{/orders/{id}(id=${order.getId()})}" th:utext="${order.number}"></a></td>
-                <td><a th:href="@{/clients/{id}(id=${order.getUser().getId()})}"
-                       th:utext="${order.getUser().getName()}"></a></td>
+                <td><a th:href="@{/clients/{id}(id=${order.getClient().getId()})}"
+                       th:utext="${order.getClient().getName()}"></a></td>
                 <td th:utext="${#dates.format(order.date, 'dd.MM.yyyy')}"></td>
                 <td>Сумма</p></td>
 
@@ -101,8 +101,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <select name="user" class="form-control selectpicker" th:field="*{user}" size="7">
-                                        <option th:each="us : ${users}" th:value="${us.id}"
+                                    <select name="client" class="form-control selectpicker" th:field="*{client}" size="7">
+                                        <option th:each="us : ${clients}" th:value="${us.id}"
                                                 th:text="${us.name}"></option>
                                     </select>
                                 </div>

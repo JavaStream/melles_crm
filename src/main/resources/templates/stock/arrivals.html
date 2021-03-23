@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="parts/header :: header('Приход товара')"></head>
+
+<body>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Главная</a></li>
+        <li class="breadcrumb-item"><a href="/category">Склад</a></li>
+        <li class="breadcrumb-item"><a th:href="@{/category/{categoryId}/color(categoryId=${category.id})}">Расцветки </a></li>
+        <li class="breadcrumb-item"><a th:href="@{/category/{categoryId}/color/{colorId}/product(categoryId=${category.id}, colorId=${color.id})}">Товары </a></li>
+        <li class="breadcrumb-item active" aria-current="page">Приход товара </li>
+    </ol>
+</nav>
+
+<div class="container base">
+    <div class="row">
+        <table class="table table-hover">
+
+            <thead class="thead">
+            <tr>
+                <th scope="col">Номер</th>
+                <th scope="col">Количество</th>
+                <th scope="col">ДАТА</th>
+                <th scope="col">Номер накладной</th>
+                <th scope="col"></th>
+                <th scope="col">
+                    <a href="#arrival_modal" id="btnadd" data-toggle="modal" title="Добавить цвет"><i
+                            class="bi bi-plus-square-fill icon-add-color"></i></a></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="arrival : ${arrivals}">
+                <td>1</td>
+                <td th:utext="${arrival.count}"></td>
+                <td th:utext="${#dates.format(arrival.date, 'dd.MM.yyyy')}"></td>
+                <td th:utext="${arrival.number}"></td>
+                <td><a th:href="@{/category/{categoryId}/color/{colorId}/product/{productId}/arrivals/edit/{arrivalId}(categoryId=${category.id}, colorId=${color.id}, productId=${product.id}, arrivalId=${arrival.id})}"><i class="bi bi-pencil-square"></i></a>
+                </td>
+                <td><a th:href="@{/category/{categoryId}/color/{colorId}/product/{productId}/arrivals/delete/{arrivalId}(categoryId=${category.id}, colorId=${color.id}, productId=${product.id}, arrivalId=${arrival.id})}"><i class="bi bi-trash"></i></a></td>
+            </tr>
+            </tbody>
+
+        </table>
+
+
+        <div id="arrival_modal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h6 class="modal-title">Новый приход </h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form th:action="@{/category/{categoryId}/color/{colorId}/product/{productId}/arrivals/add(categoryId=${category.id}, colorId=${color.id}, productId=${product.id})}" th:object="${newArrival}" th:method="POST" role="form">
+                            <fieldset>
+
+                                <div class="form-group">
+                                    <input name="id" type="text" th:field="*{id}"
+                                           class="form-control input-lg" hidden="hidden">
+                                </div>
+
+                                <div class="form-group">
+                                    <input name="count" type="text" id="count" th:field="*{count}"
+                                           class="form-control input-lg" placeholder="Количество">
+                                </div>
+
+                                <div class="form-group">
+                                    <input name="date" id="date" type="date" th:field="*{date}"
+                                           class="form-control input-lg" placeholder="Дата">
+                                </div>
+
+                                <div class="form-group">
+                                    <input name="number" id="number" type="text" th:field="*{number}"
+                                           class="form-control input-lg" placeholder="Номер накладной">
+                                </div>
+
+                                <div class="form-group">
+                                    <input name="product" type="text" th:field="*{product}"
+                                           class="form-control input-lg" hidden="hidden">
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-6"></div>
+                                    <div class="col-xs-3 col-sm-3 col-md-3">
+                                        <input type="submit" id="save" class="btn btn-xs btn-success btn-block"
+                                               value="Сохранить">
+                                    </div>
+                                    <div class="col-xs-3 col-sm-3 col-md-3">
+                                        <a href="" class="btn btn-xs btn-default btn-block">Закрыть</a>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div th:insert="parts/footer :: bootstrap_script"></div>
+</body>
+</html>

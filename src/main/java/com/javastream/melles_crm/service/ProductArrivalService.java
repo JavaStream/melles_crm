@@ -2,7 +2,7 @@ package com.javastream.melles_crm.service;
 
 import com.javastream.melles_crm.model.Product;
 import com.javastream.melles_crm.model.ProductArrival;
-import com.javastream.melles_crm.repo.ProductArrivalRepositorie;
+import com.javastream.melles_crm.repo.ProductArrivalRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
 @Service
 public class ProductArrivalService {
 
-    private ProductArrivalRepositorie arrivalRepositorie;
+    private ProductArrivalRepository arrivalRepositorie;
 
-    public ProductArrivalService(ProductArrivalRepositorie arrivalRepositorie) {
+    public ProductArrivalService(ProductArrivalRepository arrivalRepositorie) {
         this.arrivalRepositorie = arrivalRepositorie;
     }
 

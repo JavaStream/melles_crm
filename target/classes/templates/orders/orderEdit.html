@@ -47,14 +47,14 @@
             <!-- живой поиск по клиентам -->
             <div class="form-group">
                 <input type="text" style="width: 50%;" class="form-control" id="search_2"
-                       th:placeholder="${order.user.name}">
+                       th:placeholder="${order.client.name}">
             </div>
 
 
             <div class="form-group">
-                <select name="user" class="form-control selectpicker" th:field="*{user}" size="7">
-                    <option th:each="us : ${users}" th:value="${us.id}"
-                            th:text="${us.name}" th:selected="${us.name} == ${order.user.name}"></option>
+                <select name="client" class="form-control selectpicker" th:field="*{client}" size="7">
+                    <option th:each="us : ${clients}" th:value="${us.id}"
+                            th:text="${us.name}" th:selected="${us.name} == ${order.client.name}"></option>
                 </select>
             </div>
 

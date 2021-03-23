@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="parts/header :: header('Склад - Категории')"></head>
+
+<body>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Главная </a></li>
+        <li class="breadcrumb-item active" aria-current="page">Остатки продукции</li>
+    </ol>
+</nav>
+
+<div class="container base">
+    <div class="row">
+        <table class="table table-hover">
+
+            <thead class="thead">
+            <tr>
+                <th scope="col">Категории</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="category : ${categories}">
+                <td><a th:href="@{/remaining/category/{id}(id=${category.id})}" th:utext="${category.name}"></a></td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+</div>
+
+<div th:replace="parts/footer :: bootstrap_script"></div>
+</body>
+</html>

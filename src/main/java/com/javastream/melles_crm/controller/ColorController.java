@@ -6,10 +6,12 @@ import com.javastream.melles_crm.service.CategoryService;
 import com.javastream.melles_crm.service.ColorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
-import java.util.Set;
 
 /*
     Расцветки (модели) сортируются по id
@@ -30,12 +32,12 @@ public class ColorController {
     @GetMapping("/color")
     public String selectColor(@PathVariable("category") String categoryId, Model model) {
         Category category = categoryService.findById(categoryId);
-        List<Color> colors = colorService.findAllByCategory(category);
+        List<Color> colors = colorService.findAllVisible(category);
 
         model.addAttribute("colors", colors);
         model.addAttribute("category", category);
         model.addAttribute("newColor", new Color());
-        return "color";
+        return "stock/color";
     }
 
     @PostMapping("/color/add")
@@ -53,7 +55,7 @@ public class ColorController {
         model.addAttribute("color", color);
         model.addAttribute("category", category);
 
-        return "colorEdit";
+        return "stock/colorEdit";
     }
 
     @PostMapping("/color/edit/{id}")
@@ -65,9 +67,9 @@ public class ColorController {
 
     @GetMapping("/color/delete/{id}")
     public String deleteColor(@PathVariable("category") String categoryId,
-                              @PathVariable("id") Long colorId) {
+                              @PathVariable("id") String colorId) {
 
-        colorService.deleteById(colorId);
+        colorService.disableById(colorId);
 
         return "redirect:/category/" + categoryId + "/color";
     }

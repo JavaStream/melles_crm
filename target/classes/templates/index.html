@@ -7,15 +7,26 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">CRM</li>
+
+        <div class="container base">
+            <div class="row">
+                <div class="col-10"></div>
+                <div class="col-2">
+                    <form method="GET" action="/logout">
+                        <button class="btn btn-primary btn-block" type="submit">Выйти</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </ol>
 </nav>
 
 <div class="container base">
-        <div class="row"><h6><a href="/orders">Заказы</a></h6></div>
-        <div class="row"><h6><a href="/clients">Клиенты</a></h6></div>
-        <div class="row"><h6><a href="/store">Склад</a></h6></div>
-        <div class="row"><h6><a href="/category">Приемка товара</a></h6></div>
-        <div class="row"><h6><a href="/settings">Настройки</a></h6></div>
+    <div class="row"><h6><a href="/orders">Заказы</a></h6></div>
+    <div class="row"><h6><a href="/clients">Клиенты</a></h6></div>
+    <div class="row"><h6><a href="/remaining">Остатки продукции</a></h6></div>
+    <div class="row"><h6><a href="/category">Склад</a></h6></div>
+    <div class="row"><h6><a href="/settings">Настройки</a></h6></div>
 </div>
 
 

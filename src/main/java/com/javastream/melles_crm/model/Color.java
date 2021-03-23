@@ -25,10 +25,12 @@ public class Color {
     @Column(nullable = false)
     private String description;
 
+    private boolean isVisible;
+
     @ManyToOne(optional=false, fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @OneToMany(mappedBy = "color", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "color")
     private List<Product> products;
 }

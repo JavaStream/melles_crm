@@ -33,6 +33,8 @@ public class Product {
     @Column(nullable = false)
     private BigDecimal price;
 
+    private boolean isVisible;
+
     @Column(nullable = false)
     private Long incomingBalance;
 
@@ -40,7 +42,11 @@ public class Product {
     @JoinColumn(name = "color_id")
     private Color color;
 
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="photo_id", referencedColumnName = "id")
+    private ProductPhoto photo;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
+
+    @OneToMany(mappedBy = "product")
     private List<ProductArrival> productArrival;
 }

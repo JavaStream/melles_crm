@@ -1,7 +1,7 @@
 package com.javastream.melles_crm.service;
 
 import com.javastream.melles_crm.model.Category;
-import com.javastream.melles_crm.repo.CategoryRepositorie;
+import com.javastream.melles_crm.repo.CategoryRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -11,28 +11,40 @@ import java.util.stream.Collectors;
 @Service
 public class CategoryService {
 
-    private CategoryRepositorie categoryRepositorie;
+    private CategoryRepository categoryRepository;
 
-    public CategoryService(CategoryRepositorie categoryRepositorie) {
-        this.categoryRepositorie = categoryRepositorie;
+    public CategoryService(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
     }
 
     public List<Category> findAll() {
-        List<Category> categories = categoryRepositorie.findAll();
-        List<Category> sortedCategories = categories.stream().sorted(Comparator.comparing(Category::getId)).collect(Collectors.toList());
+        List<Category> categories = categoryRepository.findAll();
+        List<Category> sortedCategories = categories.stream()
+                .sorted(Comparator.comparing(Category::getId)).collect(Collectors.toList());
+        return sortedCategories;
+    }
+
+    public List<Category> findAllVisible() {
+        List<Category> categories = categoryRepository.findAll();
+        List<Category> sortedCategories = categories.stream()
+                .filter(cat -> cat.isVisible())
+                .sorted(Comparator.comparing(Category::getId)).collect(Collectors.toList());
         return sortedCategories;
     }
 
     public Category findById(String id) {
-        return categoryRepositorie.findById(Long.parseLong(id)).orElseThrow(IllegalStateException::new);
+        return categoryRepository.findById(Long.parseLong(id)).orElseThrow(IllegalStateException::new);
     }
 
     public void save(Category category) {
-        categoryRepositorie.save(category);
+        category.setVisible(true);
+        categoryRepository.save(category);
     }
 
-    public void deleteById(Long id) {
-        categoryRepositorie.deleteById(id);
+    public void disableById(String id) {
+        Category category = findById(id);
+        category.setVisible(false);
+        categoryRepository.save(category);
     }
 
 }

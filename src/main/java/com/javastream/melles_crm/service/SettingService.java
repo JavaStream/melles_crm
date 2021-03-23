@@ -2,39 +2,36 @@ package com.javastream.melles_crm.service;
 
 import com.javastream.melles_crm.model.Order;
 import com.javastream.melles_crm.model.OrderStatus;
-import com.javastream.melles_crm.model.User;
-import com.javastream.melles_crm.repo.OrderRepositorie;
-import com.javastream.melles_crm.repo.OrderStatusRepositorie;
+import com.javastream.melles_crm.repo.OrderStatusRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class SettingService {
 
-    private OrderStatusRepositorie orderStatusRepositorie;
+    private OrderStatusRepository orderStatusRepository;
     private OrderService orderService;
 
-    public SettingService(OrderStatusRepositorie orderStatusRepositorie, OrderService orderService) {
-        this.orderStatusRepositorie = orderStatusRepositorie;
+    public SettingService(OrderStatusRepository orderStatusRepository, OrderService orderService) {
+        this.orderStatusRepository = orderStatusRepository;
         this.orderService = orderService;
     }
 
     public List<OrderStatus> findOrderStatuses() {
-        List<OrderStatus> statuses = orderStatusRepositorie.findAll();
-        List<OrderStatus> sortedStatuses = statuses.stream().sorted(Comparator.comparing(OrderStatus::getNumber)).collect(Collectors.toList());
-        return sortedStatuses;
+        List<OrderStatus> statuses = orderStatusRepository.findAll();
+        return statuses.stream()
+                .sorted(Comparator.comparing(OrderStatus::getNumber)).collect(Collectors.toList());
     }
 
     public void saveOrderStatus(OrderStatus orderStatus) {
-        orderStatusRepositorie.save(orderStatus);
+        orderStatusRepository.save(orderStatus);
     }
 
     public int getLastOrderNumber() {
-        List<OrderStatus> statuses = orderStatusRepositorie.findAll();
+        List<OrderStatus> statuses = orderStatusRepository.findAll();
 
         if (statuses.isEmpty()) return 0;
 
@@ -44,7 +41,7 @@ public class SettingService {
     }
 
     public OrderStatus findById(String id) {
-        return orderStatusRepositorie.findById(Long.parseLong(id)).orElseThrow(IllegalStateException::new);
+        return orderStatusRepository.findById(Long.parseLong(id)).orElseThrow(IllegalStateException::new);
     }
 
     public void deleteOrderStatus(OrderStatus status) {
@@ -57,7 +54,7 @@ public class SettingService {
             orderService.save(order);
         }
 
-        orderStatusRepositorie.delete(status);
+        orderStatusRepository.delete(status);
     }
 
     public OrderStatus getDefultOrderStatus() {

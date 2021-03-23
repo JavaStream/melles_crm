@@ -1,8 +1,6 @@
 package com.javastream.melles_crm.controller;
 
-import com.javastream.melles_crm.model.Category;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -11,7 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 
     @GetMapping
-    public String index(Model model) {
+    public String index() {
         return "index";
+    }
+
+    @GetMapping("login")
+    public String loginView() {
+        return "login";
     }
 }

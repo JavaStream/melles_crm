@@ -51,7 +51,7 @@ public class ProductArrivalController {
         model.addAttribute("category", category);
         model.addAttribute("arrivals", arrivals);
         model.addAttribute("newArrival", productArrival);
-        return "arrivals";
+        return "stock/arrivals";
     }
 
     @PostMapping("/arrivals/add")
@@ -84,7 +84,7 @@ public class ProductArrivalController {
         model.addAttribute("product", product);
         model.addAttribute("arrival", arrival);
 
-        return "arrivalEdit";
+        return "stock/arrivalEdit";
     }
 
     @PostMapping("/arrivals/edit/{arrivalId}")
