@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,16 +15,16 @@ import java.util.stream.Collectors;
 public class OrderController {
 
     private OrderService orderService;
-    private UserService userService;
+    private ClientService clientService;
     private SettingService settingService;
     private CategoryService categoryService;
     private ProductService productService;
     private ProductInOrderService productInOrderService;
 
-    public OrderController(OrderService orderService, UserService userService, SettingService settingService,
+    public OrderController(OrderService orderService, ClientService clientService, SettingService settingService,
                            CategoryService categoryService, ProductService productService, ProductInOrderService productInOrderService) {
         this.orderService = orderService;
-        this.userService = userService;
+        this.clientService = clientService;
         this.settingService = settingService;
         this.categoryService = categoryService;
         this.productService = productService;
@@ -36,16 +35,16 @@ public class OrderController {
     public String allOrders(Model model) {
         List<Order> orders = orderService.findAll();
 
-        OrderStatus defultOrderStatus = settingService.getDefultOrderStatus();
+        OrderStatus defaultOrderStatus = settingService.getDefultOrderStatus();
         List<OrderStatus> orderStatuses = settingService.findOrderStatuses();
 
         Order order = new Order();
-        order.setStatus(defultOrderStatus);
+        order.setStatus(defaultOrderStatus);
 
         model.addAttribute("orders", orders);
         model.addAttribute("newOrder", order);
         model.addAttribute("orderStatuses", orderStatuses);
-        model.addAttribute("users", userService.findAll());
+        model.addAttribute("clients", clientService.findAll());
 
         return "orders/orders";
     }
@@ -64,7 +63,7 @@ public class OrderController {
 
         model.addAttribute("order", order);
         model.addAttribute("orderStatuses", orderStatuses);
-        model.addAttribute("users", userService.findAll());
+        model.addAttribute("clients", clientService.findAll());
 
         return "orders/orderEdit";
     }
@@ -167,7 +166,7 @@ public class OrderController {
         model.addAttribute("colors", colors);
         model.addAttribute("products", products);
         model.addAttribute("orderStatuses", orderStatuses);
-        model.addAttribute("users", userService.findAll());
+        model.addAttribute("clients", clientService.findAll());
 
         return "orders/order/orderEdit";
     }

@@ -24,8 +24,8 @@ public class Order {
     private String number;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "client_id")
+    private Client client;
 
     private Date date;
 
