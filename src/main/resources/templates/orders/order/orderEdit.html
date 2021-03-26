@@ -12,6 +12,10 @@
         <li class="breadcrumb-item"><a href="/orders">Заказы </a></li>
         <li class="breadcrumb-item"><a th:href="@{/orders/{id}(id=${order.id})}" th:utext="${order.number}"></a></li>
         <li class="breadcrumb-item active" aria-current="page">Редактирование</li>
+
+        <div class="container base">
+            <span th:replace="parts/logout_btn :: logout_button"></span>
+        </div>
     </ol>
 </nav>
 

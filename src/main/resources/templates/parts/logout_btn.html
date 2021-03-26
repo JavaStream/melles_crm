@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<span th:fragment="logout_button">
+        <div class="container base">
+                <div class="row">
+                        <div class="col-10"></div>
+                        <div class="col-2">
+                                <form method="GET" action="/logout">
+                                        <button class="btn btn-secondary btn-block" type="submit">Выйти</button>
+                                </form>
+                        </div>
+                </div>
+        </div>
+</span>
+</html>

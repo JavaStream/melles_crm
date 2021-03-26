@@ -9,12 +9,20 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/static">Главная</a></li>
         <li class="breadcrumb-item"><a href="/category">Склад</a></li>
-        <li class="breadcrumb-item"><a
-                th:href="@{/category/{categoryId}/color(categoryId=${category.id})}">Расцветки </a></li>
-        <li class="breadcrumb-item"><a
-                th:href="@{/category/{categoryId}/color/{colorId}/product(categoryId=${category.id}, colorId=${color.id})}">Товары </a>
+
+        <li class="breadcrumb-item">
+            <a th:href="@{/category/{categoryId}/color(categoryId=${category.id})}">Расцветки </a>
         </li>
+
+        <li class="breadcrumb-item">
+            <a th:href="@{/category/{categoryId}/color/{colorId}/product(categoryId=${category.id}, colorId=${color.id})}">Товары </a>
+        </li>
+
         <li class="breadcrumb-item active" aria-current="page">Редактирование</li>
+
+        <div class="container base">
+            <span th:replace="parts/logout_btn :: logout_button"></span>
+        </div>
     </ol>
 </nav>
 

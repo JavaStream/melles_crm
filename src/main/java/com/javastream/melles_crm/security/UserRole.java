@@ -1,7 +1,6 @@
 package com.javastream.melles_crm.security;
 
 import com.google.common.collect.Sets;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Set;
@@ -10,12 +9,28 @@ import java.util.stream.Collectors;
 import static com.javastream.melles_crm.security.UserPermission.*;
 
 public enum UserRole {
-    ADMIN(Sets.newHashSet(ORDERS_READ, ORDERS_WRITE, CLIENTS_READ, CLIENTS_WRITE,
-            REMAINING_READ, STORE_READ, STORE_WRITE, SETTINGS_READ, SETTINGS_WRITE)),
+    ADMIN(Sets.newHashSet(
+            ORDERS_READ,
+            ORDERS_WRITE,
+            CLIENTS_READ,
+            CLIENTS_WRITE,
+            REMAINING_READ,
+            STORE_READ,
+            STORE_WRITE,
+            SETTINGS_READ,
+            SETTINGS_WRITE)),
 
-    SALE(Sets.newHashSet(ORDERS_READ, ORDERS_WRITE, CLIENTS_READ, CLIENTS_WRITE, REMAINING_READ)),
+    SALE(Sets.newHashSet(
+            ORDERS_READ,
+            ORDERS_WRITE,
+            CLIENTS_READ,
+            CLIENTS_WRITE,
+            REMAINING_READ)),
 
-    STORE(Sets.newHashSet(REMAINING_READ, STORE_READ, STORE_WRITE));
+    STORE(Sets.newHashSet(
+            REMAINING_READ,
+            STORE_READ,
+            STORE_WRITE));
 
 
     private final Set<UserPermission> permissions;

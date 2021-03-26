@@ -13,6 +13,10 @@
         <li class="breadcrumb-item"><a th:href="@{/category/{categoryId}/color/{colorId}/product(categoryId=${category.id}, colorId=${color.id})}">Товары </a></li>
         <li class="breadcrumb-item"><a th:href="@{/category/{categoryId}/color/{colorId}/product/{productId}/arrivals(categoryId=${category.id}, colorId=${color.id}, productId=${product.id})}">Приход товара </a></li>
         <li class="breadcrumb-item active" aria-current="page">Редактирование</li>
+
+        <div class="container base">
+            <span th:replace="parts/logout_btn :: logout_button"></span>
+        </div>
     </ol>
 </nav>
 

@@ -12,6 +12,10 @@
         <li class="breadcrumb-item"><a href="/remaining">Остатки продукции </a></li>
         <li class="breadcrumb-item"><a th:href="@{/remaining/category/{categoryId}(categoryId=${categoryId})}">Расцветки </a></li>
         <li class="breadcrumb-item active" aria-current="page">Товары</li>
+
+        <div class="container base">
+            <span th:replace="parts/logout_btn :: logout_button"></span>
+        </div>
     </ol>
 </nav>
 

@@ -9,14 +9,7 @@
         <li class="breadcrumb-item active" aria-current="page">CRM</li>
 
         <div class="container base">
-            <div class="row">
-                <div class="col-10"></div>
-                <div class="col-2">
-                    <form method="GET" action="/logout">
-                        <button class="btn btn-primary btn-block" type="submit">Выйти</button>
-                    </form>
-                </div>
-            </div>
+            <span th:replace="parts/logout_btn :: logout_button"></span>
         </div>
     </ol>
 </nav>

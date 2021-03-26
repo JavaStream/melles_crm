@@ -1,92 +1,64 @@
 package com.javastream.melles_crm.security;
 
+import com.javastream.melles_crm.auth.AppUserService;
+import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationProvider;
+import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter;
+import org.keycloak.adapters.springsecurity.management.HttpSessionManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.authority.mapping.SimpleAuthorityMapper;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import java.util.concurrent.TimeUnit;
-
-import static com.javastream.melles_crm.security.UserPermission.*;
-import static com.javastream.melles_crm.security.UserRole.*;
+import org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy;
+import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 
 @Configuration
 @EnableWebSecurity
-public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
+public class AppSecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
+    private final AppUserService appUserService;
 
-    public AppSecurityConfig(PasswordEncoder passwordEncoder) {
+    public AppSecurityConfig(PasswordEncoder passwordEncoder, AppUserService appUserService) {
         this.passwordEncoder = passwordEncoder;
+        this.appUserService = appUserService;
     }
+
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) {
+        SimpleAuthorityMapper simpleAuthorityMapper = new SimpleAuthorityMapper();
+
+        KeycloakAuthenticationProvider keycloakAuthenticationProvider =
+                keycloakAuthenticationProvider();
+        keycloakAuthenticationProvider.setGrantedAuthoritiesMapper(simpleAuthorityMapper);
+        authenticationManagerBuilder.authenticationProvider(keycloakAuthenticationProvider);
+    }
+
+    @Override
+    protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
+        return new RegisterSessionAuthenticationStrategy(new SessionRegistryImpl());
+    }
+
+    @Bean
+    @Override
+    @ConditionalOnMissingBean(HttpSessionManager.class)
+    protected HttpSessionManager httpSessionManager() {
+        return new HttpSessionManager();
+    }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-            //.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                //.and()
-             .csrf().disable()
-            .authorizeRequests()
-            .antMatchers("/css/*", "/js/*", "/images/*").permitAll()
-            .antMatchers("/orders/**").hasAnyAuthority(ORDERS_READ.getPermission(), ORDERS_WRITE.getPermission())
-            .antMatchers("/clients/**").hasAnyAuthority(CLIENTS_READ.getPermission(), CLIENTS_WRITE.getPermission())
-            .antMatchers("/remaining/**").hasAnyAuthority(REMAINING_READ.getPermission())
-            .antMatchers("/category/**").hasAnyAuthority(STORE_READ.getPermission(), STORE_WRITE.getPermission())
-            .antMatchers("/settings/**").hasAnyAuthority(SETTINGS_READ.getPermission(), SETTINGS_WRITE.getPermission())
-            .antMatchers(HttpMethod.POST, "/category/**").hasAnyRole(ADMIN.name())
-            .antMatchers("/").hasAnyRole(ADMIN.name(), SALE.name(), STORE.name())
-            .anyRequest()
-            .authenticated()
-            .and()
-            .formLogin()
-                .loginPage("/login").permitAll()
-                .passwordParameter("password")
-                .usernameParameter("username")
-            .and()
-            .rememberMe()
-                .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21))
-                .key("somethingverysecured")
-                .rememberMeParameter("remember-me")
-            .and()
-            .logout()
-                .logoutUrl("/logout")
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
-                .clearAuthentication(true)
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID", "remember-me")
-                .logoutSuccessUrl("/login");
-    }
-
-    @Override
-    @Bean
-    protected UserDetailsService userDetailsService() {
-        UserDetails admin = User.builder()
-                .username("admin")
-                .password(passwordEncoder.encode("pas"))
-                .authorities(ADMIN.getGrantedAuthorities())
-                .build();
-
-        UserDetails sale = User.builder()
-                .username("sale")
-                .password(passwordEncoder.encode("pas"))
-                .authorities(SALE.getGrantedAuthorities())
-                .build();
-
-        UserDetails store = User.builder()
-                .username("store")
-                .password(passwordEncoder.encode("pas"))
-                .authorities(STORE.getGrantedAuthorities())
-                .build();
-
-        return new InMemoryUserDetailsManager(admin, sale, store);
+        super.configure(http);
+        http.authorizeRequests()
+                .antMatchers("/orders").hasRole("user")
+                .anyRequest().permitAll();
     }
 }
