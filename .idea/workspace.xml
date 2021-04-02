@@ -4,7 +4,54 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f469bd47-693b-4938-bca8-499f4a468e7e" name="Default Changelist" comment="" />
+    <list default="true" id="f469bd47-693b-4938-bca8-499f4a468e7e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/auth/AppUseDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/auth/FakeAppUserDaoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/melles_crm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/melles_crm.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/auth/AppUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/auth/AppUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/auth/AppUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/auth/AppUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/security/AppSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/security/AppSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/security/UserRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/security/UserRole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V1__Init_db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V1__Init_db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/MellesCrmApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/MellesCrmApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/config/FilesConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/config/FilesConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/config/WrongIdRequestException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/config/WrongIdRequestException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/CategoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/CategoryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/ColorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/ColorController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/FileController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/FileController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/MainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/OrderController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/ProductArrivalController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/ProductArrivalController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/ProductController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/SettingsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/SettingsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/UtilController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/controller/UtilController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/Category.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/Category.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/Color.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/Color.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/OrderStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/OrderStatus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/ProductArrival.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/ProductArrival.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/ProductInOrder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/ProductInOrder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/ProductPhoto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/ProductPhoto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/Statistic.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/model/Statistic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/CategoryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/CategoryService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/ColorService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/ColorService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/FileService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/FileService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/OrderService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/ProductArrivalService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/ProductArrivalService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/ProductInOrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/ProductInOrderService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/ProductService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/SettingService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/javastream/melles_crm/service/SettingService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/db/migration/V1__Init_db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/db/migration/V1__Init_db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/javastream/melles_crm/MellesCrmApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/javastream/melles_crm/MellesCrmApplicationTests.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -107,6 +154,7 @@
     </ignored-facets>
   </component>
   <component name="ProjectId" id="1nrkRGUHTk3hVskyxZsTYFczNUM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -128,10 +176,10 @@
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="PostgreSQL" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="js.eslint.eslintPackage" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../test" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/db/migration" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path" value="node" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -142,11 +190,11 @@
       <recent name="com.javastream.melles_crm.model" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\1 Projects\melles_crm\src\main\resources\db\migration" />
       <recent name="D:\1 Projects\melles_crm\src\main\resources\templates" />
       <recent name="D:\1_Programming\2_projects\IdeaProjects\melles_crm\src\main\resources\templates\orders\order" />
       <recent name="D:\1_Programming\2_projects\IdeaProjects\melles_crm\src\main\resources\templates\store" />
       <recent name="D:\1_Programming\2_projects\IdeaProjects\melles_crm\src\main\resources\templates\orders" />
-      <recent name="D:\1_Programming\2_projects\IdeaProjects\melles_crm\src\main\resources\templates\settings" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\1_Programming\2_projects\IdeaProjects\melles_crm\src\main\resources\templates\stock" />
@@ -329,37 +377,6 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/security/UserRole.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/security/UserRole.java</url>
-          <line>35</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/security/UserRole.java</url>
-          <line>36</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/security/AppSecurityConfig.java</url>
-          <line>38</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/javastream/melles_crm/controller/MainController.java</url>
-          <line>17</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -13,8 +13,10 @@ public class MainController {
         return "index";
     }
 
+
     @GetMapping("login")
     public String loginView() {
         return "login";
     }
+
 }
